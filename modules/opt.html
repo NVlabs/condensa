@@ -172,7 +172,7 @@
 <h2>Direct Compression Optimizer<a class="headerlink" href="#direct-compression-optimizer" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="condensa.opt.DC">
-<em class="property">class </em><code class="descclassname">condensa.opt.</code><code class="descname">DC</code><a class="reference internal" href="../_modules/condensa/opt/direct/dc.html#DC"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.opt.DC" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">condensa.opt.</code><code class="descname">DC</code><a class="headerlink" href="#condensa.opt.DC" title="Permalink to this definition">¶</a></dt>
 <dd><p>Condensa direct compression optimizer.</p>
 <dl class="method">
 <dt id="condensa.opt.DC.__init__">
@@ -182,7 +182,7 @@
 
 <dl class="method">
 <dt id="condensa.opt.DC.compress">
-<code class="descname">compress</code><span class="sig-paren">(</span><em>w</em>, <em>scheme</em>, <em>trainset</em>, <em>testset</em>, <em>valset</em>, <em>loss_fn</em>, <em>finetune=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/condensa/opt/direct/dc.html#DC.compress"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.opt.DC.compress" title="Permalink to this definition">¶</a></dt>
+<code class="descname">compress</code><span class="sig-paren">(</span><em>w</em>, <em>scheme</em>, <em>trainset</em>, <em>testset</em>, <em>valset</em>, <em>loss_fn</em>, <em>finetune=False</em><span class="sig-paren">)</span><a class="headerlink" href="#condensa.opt.DC.compress" title="Permalink to this definition">¶</a></dt>
 <dd><p>Performs model compression using direct optimization.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -210,11 +210,11 @@
 <h2>L-C Optimizer<a class="headerlink" href="#l-c-optimizer" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="condensa.opt.LC">
-<em class="property">class </em><code class="descclassname">condensa.opt.</code><code class="descname">LC</code><span class="sig-paren">(</span><em>steps=30</em>, <em>l_batch_size=128</em>, <em>lr=None</em>, <em>lr_end=None</em>, <em>lr_decay=None</em>, <em>lr_schedule=None</em>, <em>lr_multiplier=None</em>, <em>momentum=None</em>, <em>weight_decay=None</em>, <em>sgd_iterations_per_l=0</em>, <em>sgd_iterations_first_l=0</em>, <em>mu_init=0.0</em>, <em>mu_multiplier=1.0</em>, <em>mu_cap=10000</em>, <em>val_batch_size=100</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/condensa/opt/lc/lc.html#LC"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.opt.LC" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">condensa.opt.</code><code class="descname">LC</code><span class="sig-paren">(</span><em>steps=30</em>, <em>l_batch_size=128</em>, <em>lr=None</em>, <em>lr_end=None</em>, <em>lr_decay=None</em>, <em>lr_schedule=None</em>, <em>lr_multiplier=None</em>, <em>momentum=None</em>, <em>weight_decay=None</em>, <em>sgd_iterations_per_l=0</em>, <em>sgd_iterations_first_l=0</em>, <em>mu_init=0.0</em>, <em>mu_multiplier=1.0</em>, <em>mu_cap=10000</em>, <em>val_batch_size=100</em><span class="sig-paren">)</span><a class="headerlink" href="#condensa.opt.LC" title="Permalink to this definition">¶</a></dt>
 <dd><p>Condensa L-C compression engine.</p>
 <dl class="method">
 <dt id="condensa.opt.LC.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>steps=30</em>, <em>l_batch_size=128</em>, <em>lr=None</em>, <em>lr_end=None</em>, <em>lr_decay=None</em>, <em>lr_schedule=None</em>, <em>lr_multiplier=None</em>, <em>momentum=None</em>, <em>weight_decay=None</em>, <em>sgd_iterations_per_l=0</em>, <em>sgd_iterations_first_l=0</em>, <em>mu_init=0.0</em>, <em>mu_multiplier=1.0</em>, <em>mu_cap=10000</em>, <em>val_batch_size=100</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/condensa/opt/lc/lc.html#LC.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.opt.LC.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>steps=30</em>, <em>l_batch_size=128</em>, <em>lr=None</em>, <em>lr_end=None</em>, <em>lr_decay=None</em>, <em>lr_schedule=None</em>, <em>lr_multiplier=None</em>, <em>momentum=None</em>, <em>weight_decay=None</em>, <em>sgd_iterations_per_l=0</em>, <em>sgd_iterations_first_l=0</em>, <em>mu_init=0.0</em>, <em>mu_multiplier=1.0</em>, <em>mu_cap=10000</em>, <em>val_batch_size=100</em><span class="sig-paren">)</span><a class="headerlink" href="#condensa.opt.LC.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Constructs an <cite>LC</cite> class instance.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -244,7 +244,7 @@
 
 <dl class="method">
 <dt id="condensa.opt.LC.compress">
-<code class="descname">compress</code><span class="sig-paren">(</span><em>w</em>, <em>pi</em>, <em>delta</em>, <em>trainset</em>, <em>testset</em>, <em>valset</em>, <em>loss_fn</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/condensa/opt/lc/lc.html#LC.compress"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.opt.LC.compress" title="Permalink to this definition">¶</a></dt>
+<code class="descname">compress</code><span class="sig-paren">(</span><em>w</em>, <em>pi</em>, <em>delta</em>, <em>trainset</em>, <em>testset</em>, <em>valset</em>, <em>loss_fn</em><span class="sig-paren">)</span><a class="headerlink" href="#condensa.opt.LC.compress" title="Permalink to this definition">¶</a></dt>
 <dd><p>Main L-C compression method.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -267,7 +267,7 @@
 
 <dl class="method">
 <dt id="condensa.opt.LC.condensa_loss">
-<code class="descname">condensa_loss</code><span class="sig-paren">(</span><em>mu</em>, <em>w</em>, <em>theta</em>, <em>lm</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/condensa/opt/lc/lc.html#LC.condensa_loss"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.opt.LC.condensa_loss" title="Permalink to this definition">¶</a></dt>
+<code class="descname">condensa_loss</code><span class="sig-paren">(</span><em>mu</em>, <em>w</em>, <em>theta</em>, <em>lm</em><span class="sig-paren">)</span><a class="headerlink" href="#condensa.opt.LC.condensa_loss" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes L-C reconstruction loss.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -287,7 +287,7 @@
 
 <dl class="method">
 <dt id="condensa.opt.LC.zero_">
-<code class="descname">zero_</code><span class="sig-paren">(</span><em>model</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/condensa/opt/lc/lc.html#LC.zero_"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.opt.LC.zero_" title="Permalink to this definition">¶</a></dt>
+<code class="descname">zero_</code><span class="sig-paren">(</span><em>model</em><span class="sig-paren">)</span><a class="headerlink" href="#condensa.opt.LC.zero_" title="Permalink to this definition">¶</a></dt>
 <dd><p>Zeroes out model parameters.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
