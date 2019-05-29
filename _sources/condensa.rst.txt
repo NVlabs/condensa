@@ -1,0 +1,52 @@
+Condensa
+========
+
+Compression Operators
+---------------------
+
+.. automodule:: condensa.pi
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Decompression Operators
+-----------------------
+
+.. automodule:: condensa.delta
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Tensor Operators
+----------------
+
+.. automodule:: condensa.tensor
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Compression Schemes
+-------------------
+
+.. automodule:: condensa.schemes
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Aggregation Functions
+---------------------
+
+.. automodule:: condensa.functional
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Utilities
+----------
+
+.. automodule:: condensa.util
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+

@@ -1,0 +1,9 @@
+Usage
+=====
+
+The `notebooks` folder contains Jupyter notebooks with step-by-step walkthroughs
+for various usage scenarios. Check out the `LeNet5 Compression` notebook
+for a simple getting started guide.
+
+The `examples` folder contains additional, more complex examples of using Condensa.
+

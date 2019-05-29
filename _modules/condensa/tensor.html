@@ -1,0 +1,423 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>condensa.tensor &mdash; Condensa 0.5-beta documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Condensa
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5-beta
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../guide/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../guide/usage.html">Usage</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Module API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/compressor.html"><code class="docutils literal notranslate"><span class="pre">condensa.compressor</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/schemes.html"><code class="docutils literal notranslate"><span class="pre">condensa.schemes</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/pi.html"><code class="docutils literal notranslate"><span class="pre">condensa.pi</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/delta.html"><code class="docutils literal notranslate"><span class="pre">condensa.delta</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/tensor.html"><code class="docutils literal notranslate"><span class="pre">condensa.tensor</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/opt.html"><code class="docutils literal notranslate"><span class="pre">condensa.opt</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/functional.html"><code class="docutils literal notranslate"><span class="pre">condensa.functional</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/thinner.html"><code class="docutils literal notranslate"><span class="pre">condensa.thinner</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/util.html"><code class="docutils literal notranslate"><span class="pre">condensa.util</span></code></a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Condensa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>condensa.tensor</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for condensa.tensor</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright 2019 NVIDIA Corporation</span>
+<span class="c1"># </span>
+<span class="c1"># Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span class="c1"># you may not use this file except in compliance with the License.</span>
+<span class="c1"># You may obtain a copy of the License at</span>
+<span class="c1"># </span>
+<span class="c1">#     http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1"># </span>
+<span class="c1"># Unless required by applicable law or agreed to in writing, software</span>
+<span class="c1"># distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span class="c1"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c1"># See the License for the specific language governing permissions and</span>
+<span class="c1"># limitations under the License.</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+
+<div class="viewcode-block" id="density"><a class="viewcode-back" href="../../modules/tensor.html#condensa.tensor.density">[docs]</a><span class="k">def</span> <span class="nf">density</span><span class="p">(</span><span class="n">tensor</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot;Computes the ratio of nonzeros to total elements in a tensor.</span>
+
+<span class="sd">     :param tensor: PyTorch tensor</span>
+<span class="sd">     :type tensor: `torch.Tensor`</span>
+<span class="sd">     :return: Ratio of nonzeros to total elements</span>
+<span class="sd">     :rtype: `float`</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+  <span class="n">t</span> <span class="o">=</span> <span class="n">tensor</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+  <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">nonzero</span><span class="p">()</span><span class="o">.</span><span class="n">numel</span><span class="p">())</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">numel</span><span class="p">())</span></div>
+
+<div class="viewcode-block" id="sparsity"><a class="viewcode-back" href="../../modules/tensor.html#condensa.tensor.sparsity">[docs]</a><span class="k">def</span> <span class="nf">sparsity</span><span class="p">(</span><span class="n">tensor</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot;Computes the ratio of zeros to total elements in a tensor.</span>
+
+<span class="sd">     :param tensor: PyTorch tensor</span>
+<span class="sd">     :type tensor: torch.Tensor</span>
+<span class="sd">     :return: Ratio of zeros to total elements</span>
+<span class="sd">     :rtype: `float`</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+  <span class="k">return</span> <span class="mf">1.</span> <span class="o">-</span> <span class="n">density</span><span class="p">(</span><span class="n">tensor</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="threshold"><a class="viewcode-back" href="../../modules/tensor.html#condensa.tensor.threshold">[docs]</a><span class="k">def</span> <span class="nf">threshold</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">density</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot;Computes a magnitude-based threshold for given tensor.</span>
+
+<span class="sd">     :param tensor: PyTorch tensor</span>
+<span class="sd">     :type tensor: `torch.Tensor`</span>
+<span class="sd">     :param density: Desired ratio of nonzeros to total elements</span>
+<span class="sd">     :type density: `float`</span>
+<span class="sd">     :return: Magnitude threshold</span>
+<span class="sd">     :rtype: `float`</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+  <span class="n">tf</span> <span class="o">=</span> <span class="n">tensor</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+  <span class="n">numel</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">density</span> <span class="o">*</span> <span class="n">tf</span><span class="o">.</span><span class="n">numel</span><span class="p">())</span>
+  <span class="k">if</span> <span class="n">numel</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Provided density value causes model to be zero.&#39;</span><span class="p">)</span>
+
+  <span class="n">topk</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">topk</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">abs</span><span class="p">(),</span> <span class="n">numel</span><span class="p">,</span> <span class="nb">sorted</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">topk</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="aggregate"><a class="viewcode-back" href="../../modules/tensor.html#condensa.tensor.aggregate">[docs]</a><span class="k">def</span> <span class="nf">aggregate</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">blocksize</span><span class="p">,</span> <span class="n">criteria</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot;Aggregates tensor dimensions according to criteria.</span>
+
+<span class="sd">     :param tensor: PyTorch tensor</span>
+<span class="sd">     :type tensor: `torch.Tensor`</span>
+<span class="sd">     :param blocksize: Size of blocks to aggregate</span>
+<span class="sd">     :type blocksize: `Tuple(int)`</span>
+<span class="sd">     :param criteria: Aggregation criteria</span>
+<span class="sd">     :type criteria: `condensa.functional`</span>
+<span class="sd">     :return: Aggregated tensor</span>
+<span class="sd">     :rtype: `torch.Tensor`</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+  <span class="k">if</span> <span class="n">tensor</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">blocksize</span><span class="p">):</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Tensor and block dimensions do not match&#39;</span><span class="p">)</span>
+  <span class="n">ndim</span> <span class="o">=</span> <span class="n">tensor</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span>
+
+  <span class="n">blocksize_flat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">blocksize</span><span class="p">))</span>
+  <span class="n">shape</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tensor</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+  <span class="n">repeats</span> <span class="o">=</span> <span class="p">(</span><span class="n">shape</span> <span class="o">/</span> <span class="n">blocksize</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+  <span class="n">divcheck</span> <span class="o">=</span> <span class="p">(</span><span class="n">shape</span> <span class="o">%</span> <span class="n">blocksize</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+  <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">divcheck</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;Block size must be divisible by tensor size&#39;</span><span class="p">)</span>
+
+  <span class="n">tmpshape</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">repeats</span><span class="p">,</span> <span class="n">blocksize</span><span class="p">])</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+  <span class="n">order</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tmpshape</span><span class="p">))</span>
+  <span class="n">order</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">order</span><span class="p">[::</span><span class="mi">2</span><span class="p">],</span> <span class="n">order</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">]])</span>
+  <span class="n">blocks</span> <span class="o">=</span> <span class="n">tensor</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">tmpshape</span><span class="p">))</span>
+  <span class="n">blocks</span> <span class="o">=</span> <span class="n">blocks</span><span class="o">.</span><span class="n">permute</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">order</span><span class="p">))</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="n">blocksize</span><span class="p">)</span>
+  <span class="n">agg</span> <span class="o">=</span> <span class="n">criteria</span><span class="p">(</span><span class="n">blocks</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">blocksize_flat</span><span class="p">),</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">agg</span></div>
+
+<div class="viewcode-block" id="aggregate_neurons"><a class="viewcode-back" href="../../modules/tensor.html#condensa.tensor.aggregate_neurons">[docs]</a><span class="k">def</span> <span class="nf">aggregate_neurons</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">criteria</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot;Aggregates neurons (rows) in given weight matrix.</span>
+<span class="sd">  </span>
+<span class="sd">     :param tensor: PyTorch tensor</span>
+<span class="sd">     :type tensor: `torch.Tensor`</span>
+<span class="sd">     :param criteria: Aggregation criteria</span>
+<span class="sd">     :type criteria: `condensa.functional`</span>
+<span class="sd">     :return: Neuron-aggregated tensor</span>
+<span class="sd">     :rtype: `torch.Tensor`</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+  <span class="k">return</span> <span class="n">aggregate</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">tensor</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">criteria</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="aggregate_filters"><a class="viewcode-back" href="../../modules/tensor.html#condensa.tensor.aggregate_filters">[docs]</a><span class="k">def</span> <span class="nf">aggregate_filters</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">criteria</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot;Aggregates 3D filters in given weight tensor.</span>
+<span class="sd">  </span>
+<span class="sd">     :param tensor: PyTorch tensor</span>
+<span class="sd">     :type tensor: `torch.Tensor`</span>
+<span class="sd">     :param criteria: Aggregation criteria</span>
+<span class="sd">     :type criteria: `condensa.functional`</span>
+<span class="sd">     :return: Filter-aggregated tensor</span>
+<span class="sd">     :rtype: `torch.Tensor`</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+  <span class="k">return</span> <span class="n">aggregate</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="n">tensor</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:]),</span> <span class="n">criteria</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="simple_mask"><a class="viewcode-back" href="../../modules/tensor.html#condensa.tensor.simple_mask">[docs]</a><span class="k">def</span> <span class="nf">simple_mask</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">threshold</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot;Computes a simple binary mask for given magnitude threshold.</span>
+
+<span class="sd">     :param tensor: PyTorch tensor</span>
+<span class="sd">     :type tensor: `torch.Tensor`</span>
+<span class="sd">     :param threshold: magnitude threshold for pruning</span>
+<span class="sd">     :type threshold: `float`</span>
+<span class="sd">     :return: Mask</span>
+<span class="sd">     :rtype: `torch.Tensor`</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+  <span class="k">assert</span> <span class="n">tensor</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">==</span> <span class="mi">1</span>
+  <span class="k">if</span> <span class="n">align</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">ge</span><span class="p">(</span><span class="n">tensor</span><span class="o">.</span><span class="n">abs</span><span class="p">(),</span> <span class="n">threshold</span><span class="p">)</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="n">tensor</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">size</span> <span class="o">&lt;</span> <span class="n">align</span><span class="p">:</span>
+      <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Tensor too small for given alignment&#39;</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">tensor</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span>
+    <span class="n">nnz</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ge</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">threshold</span><span class="p">)</span><span class="o">.</span><span class="n">nonzero</span><span class="p">()</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">nnz</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">nnz</span><span class="o">/</span><span class="n">align</span><span class="p">)</span><span class="o">*</span><span class="n">align</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">indices</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">topk</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">nnz</span><span class="p">)</span>
+    <span class="n">ones</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">nnz</span><span class="p">,</span>
+                      <span class="n">dtype</span><span class="o">=</span><span class="n">tensor</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span>
+                      <span class="n">layout</span><span class="o">=</span><span class="n">tensor</span><span class="o">.</span><span class="n">layout</span><span class="p">,</span>
+                      <span class="n">device</span><span class="o">=</span><span class="n">tensor</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">tensor</span><span class="p">)</span><span class="o">.</span><span class="n">scatter_</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">indices</span><span class="p">,</span> <span class="n">ones</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">mask</span></div>
+
+<div class="viewcode-block" id="block_mask"><a class="viewcode-back" href="../../modules/tensor.html#condensa.tensor.block_mask">[docs]</a><span class="k">def</span> <span class="nf">block_mask</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span>
+               <span class="n">threshold</span><span class="p">,</span>
+               <span class="n">blocksize</span><span class="p">,</span>
+               <span class="n">criteria</span><span class="p">,</span>
+               <span class="n">align</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot;Computes an n-D binary mask for given magnitude threshold.</span>
+
+<span class="sd">     :param tensor: PyTorch tensor</span>
+<span class="sd">     :type tensor: `torch.Tensor`</span>
+<span class="sd">     :param threshold: magnitude threshold for pruning</span>
+<span class="sd">     :type threshold: `float`</span>
+<span class="sd">     :param blocksize: desired block size (Tuple)</span>
+<span class="sd">     :type blocksize: `Tuple`</span>
+<span class="sd">     :param criteria: aggregation function for thresholding (default: max)</span>
+<span class="sd">     :type criteria: `condensa.functional`</span>
+<span class="sd">     :return: Mask</span>
+<span class="sd">     :rtype: `torch.Tensor`</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+  <span class="c1"># Original implementation at: https://stackoverflow.com/questions/42297115</span>
+  <span class="c1"># /numpy-split-cube-into-cubes/42298440#42298440</span>
+  <span class="k">if</span> <span class="n">tensor</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">blocksize</span><span class="p">):</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Tensor and block dimensions do not match&#39;</span><span class="p">)</span>
+  <span class="n">ndim</span> <span class="o">=</span> <span class="n">tensor</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span>
+
+  <span class="n">blocksize_flat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">blocksize</span><span class="p">))</span>
+  <span class="n">shape</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tensor</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+  <span class="n">repeats</span> <span class="o">=</span> <span class="p">(</span><span class="n">shape</span> <span class="o">/</span> <span class="n">blocksize</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+  <span class="n">divcheck</span> <span class="o">=</span> <span class="p">(</span><span class="n">shape</span> <span class="o">%</span> <span class="n">blocksize</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+  <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">divcheck</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;Block size must be divisible by tensor size&#39;</span><span class="p">)</span>
+
+  <span class="n">tmpshape</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">repeats</span><span class="p">,</span> <span class="n">blocksize</span><span class="p">])</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+  <span class="n">order</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tmpshape</span><span class="p">))</span>
+  <span class="n">order</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">order</span><span class="p">[::</span><span class="mi">2</span><span class="p">],</span> <span class="n">order</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">]])</span>
+  <span class="n">blocks</span> <span class="o">=</span> <span class="n">tensor</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">tmpshape</span><span class="p">))</span>
+  <span class="n">blocks</span> <span class="o">=</span> <span class="n">blocks</span><span class="o">.</span><span class="n">permute</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">order</span><span class="p">))</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="n">blocksize</span><span class="p">)</span>
+  <span class="n">agg</span> <span class="o">=</span> <span class="n">criteria</span><span class="p">(</span><span class="n">blocks</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">blocksize_flat</span><span class="p">),</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+  <span class="n">mask</span> <span class="o">=</span> <span class="n">simple_mask</span><span class="p">(</span><span class="n">agg</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">threshold</span><span class="p">,</span> <span class="n">align</span><span class="p">)</span>
+  <span class="n">mask</span> <span class="o">=</span> <span class="n">mask</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">agg</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">blocksize_flat</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">blocks</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+  <span class="n">N</span><span class="p">,</span> <span class="n">newshape</span> <span class="o">=</span> <span class="n">mask</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">mask</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+  <span class="n">repeats</span> <span class="o">=</span> <span class="p">(</span><span class="n">shape</span> <span class="o">/</span> <span class="n">newshape</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+  <span class="n">tmpshape</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">repeats</span><span class="p">,</span> <span class="n">newshape</span><span class="p">])</span>
+  <span class="n">order</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tmpshape</span><span class="p">))</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">mask</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">tmpshape</span><span class="p">))</span><span class="o">.</span><span class="n">permute</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">order</span><span class="p">))</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">shape</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="apply_mask"><a class="viewcode-back" href="../../modules/tensor.html#condensa.tensor.apply_mask">[docs]</a><span class="k">def</span> <span class="nf">apply_mask</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot;Computes masked version of tensor.</span>
+
+<span class="sd">     :param tensor: PyTorch tensor</span>
+<span class="sd">     :type tensor: `torch.Tensor`</span>
+<span class="sd">     :param mask: Binary mask</span>
+<span class="sd">     :type mask: `torch.Tensor`</span>
+<span class="sd">     :return: Masked version of `tensor`</span>
+<span class="sd">     :rtype: `torch.Tensor`</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+  <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">mul</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">mask</span><span class="o">.</span><span class="n">type</span><span class="p">(</span><span class="n">tensor</span><span class="o">.</span><span class="n">type</span><span class="p">()))</span></div>
+
+<div class="viewcode-block" id="apply_mask_inplace"><a class="viewcode-back" href="../../modules/tensor.html#condensa.tensor.apply_mask_inplace">[docs]</a><span class="k">def</span> <span class="nf">apply_mask_inplace</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot;Applies binary mask in-place.</span>
+
+<span class="sd">     :param tensor: PyTorch tensor</span>
+<span class="sd">     :type tensor: `torch.Tensor`</span>
+<span class="sd">     :param mask: Binary mask</span>
+<span class="sd">     :type mask: `torch.Tensor`</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+  <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span>
+  <span class="n">tensor</span><span class="o">.</span><span class="n">mul_</span><span class="p">(</span><span class="n">mask</span><span class="o">.</span><span class="n">type</span><span class="p">(</span><span class="n">tensor</span><span class="o">.</span><span class="n">type</span><span class="p">()))</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, NVIDIA Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

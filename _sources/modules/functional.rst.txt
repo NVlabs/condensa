@@ -1,0 +1,10 @@
+:mod:`condensa.functional`
+==========================
+.. automodule:: condensa.functional
+
+Aggregation Functions
+---------------------
+.. automodule:: condensa.functional
+   :members:
+
+

@@ -1,0 +1,365 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>condensa.opt &mdash; Condensa 0.5-beta documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="condensa.functional" href="functional.html" />
+    <link rel="prev" title="condensa.tensor" href="tensor.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Condensa
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5-beta
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guide/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/usage.html">Usage</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Module API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="compressor.html"><code class="docutils literal notranslate"><span class="pre">condensa.compressor</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="schemes.html"><code class="docutils literal notranslate"><span class="pre">condensa.schemes</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="pi.html"><code class="docutils literal notranslate"><span class="pre">condensa.pi</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="delta.html"><code class="docutils literal notranslate"><span class="pre">condensa.delta</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="tensor.html"><code class="docutils literal notranslate"><span class="pre">condensa.tensor</span></code></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">condensa.opt</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#direct-compression-optimizer">Direct Compression Optimizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#l-c-optimizer">L-C Optimizer</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="functional.html"><code class="docutils literal notranslate"><span class="pre">condensa.functional</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="thinner.html"><code class="docutils literal notranslate"><span class="pre">condensa.thinner</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="util.html"><code class="docutils literal notranslate"><span class="pre">condensa.util</span></code></a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Condensa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li><code class="docutils literal notranslate"><span class="pre">condensa.opt</span></code></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/modules/opt.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-condensa.opt">
+<span id="condensa-opt"></span><h1><a class="reference internal" href="#module-condensa.opt" title="condensa.opt"><code class="xref py py-mod docutils literal notranslate"><span class="pre">condensa.opt</span></code></a><a class="headerlink" href="#module-condensa.opt" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="direct-compression-optimizer">
+<h2>Direct Compression Optimizer<a class="headerlink" href="#direct-compression-optimizer" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="condensa.opt.DC">
+<em class="property">class </em><code class="descclassname">condensa.opt.</code><code class="descname">DC</code><a class="reference internal" href="../_modules/condensa/opt/direct/dc.html#DC"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.opt.DC" title="Permalink to this definition">¶</a></dt>
+<dd><p>Condensa direct compression optimizer.</p>
+<dl class="method">
+<dt id="condensa.opt.DC.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#condensa.opt.DC.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="condensa.opt.DC.compress">
+<code class="descname">compress</code><span class="sig-paren">(</span><em>w</em>, <em>scheme</em>, <em>trainset</em>, <em>testset</em>, <em>valset</em>, <em>loss_fn</em>, <em>finetune=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/condensa/opt/direct/dc.html#DC.compress"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.opt.DC.compress" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs model compression using direct optimization.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>w</strong> (<cite>torch.nn.Module</cite>) – PyTorch model.</li>
+<li><strong>scheme</strong> – Compression scheme.</li>
+<li><strong>trainset</strong> – Training dataset.</li>
+<li><strong>testset</strong> – Test dataset.</li>
+<li><strong>valset</strong> – Validation dataset.</li>
+<li><strong>loss_fn</strong> – Loss criterion.</li>
+<li><strong>finetune</strong> (<cite>bool</cite>) – Whether to perform fine-tuning after compression (default: False).</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="l-c-optimizer">
+<h2>L-C Optimizer<a class="headerlink" href="#l-c-optimizer" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="condensa.opt.LC">
+<em class="property">class </em><code class="descclassname">condensa.opt.</code><code class="descname">LC</code><span class="sig-paren">(</span><em>steps=30</em>, <em>l_batch_size=128</em>, <em>lr=None</em>, <em>lr_end=None</em>, <em>lr_decay=None</em>, <em>lr_schedule=None</em>, <em>lr_multiplier=None</em>, <em>momentum=None</em>, <em>weight_decay=None</em>, <em>sgd_iterations_per_l=0</em>, <em>sgd_iterations_first_l=0</em>, <em>mu_init=0.0</em>, <em>mu_multiplier=1.0</em>, <em>mu_cap=10000</em>, <em>val_batch_size=100</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/condensa/opt/lc/lc.html#LC"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.opt.LC" title="Permalink to this definition">¶</a></dt>
+<dd><p>Condensa L-C compression engine.</p>
+<dl class="method">
+<dt id="condensa.opt.LC.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>steps=30</em>, <em>l_batch_size=128</em>, <em>lr=None</em>, <em>lr_end=None</em>, <em>lr_decay=None</em>, <em>lr_schedule=None</em>, <em>lr_multiplier=None</em>, <em>momentum=None</em>, <em>weight_decay=None</em>, <em>sgd_iterations_per_l=0</em>, <em>sgd_iterations_first_l=0</em>, <em>mu_init=0.0</em>, <em>mu_multiplier=1.0</em>, <em>mu_cap=10000</em>, <em>val_batch_size=100</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/condensa/opt/lc/lc.html#LC.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.opt.LC.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructs an <cite>LC</cite> class instance.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>steps</strong> (<em>float</em>) – Number of L-C iterations.</li>
+<li><strong>l_batch_size</strong> (<em>int</em>) – Batch size for L-step.</li>
+<li><strong>lr</strong> (<em>float</em>) – Starting learning rate.</li>
+<li><strong>lr_end</strong> (<em>float</em>) – Ending learning rate.</li>
+<li><strong>lr_schedule</strong> (<em>List</em>) – Learning rate schedule.</li>
+<li><strong>lr_multiplier</strong> (<em>float</em>) – Learning rate multiplier.</li>
+<li><strong>momentum</strong> (<em>float</em>) – Momentum for L-step.</li>
+<li><strong>weight_decay</strong> (<em>float</em>) – Weight decay for L-step.</li>
+<li><strong>sgd_iterations_per_l</strong> (<em>int</em>) – Number of SGD iterations per L-step.</li>
+<li><strong>sgd_iterations_first_l</strong> (<em>int</em>) – Number of SGD iterations for first L-step.</li>
+<li><strong>mu_init</strong> (<em>float</em>) – Initial value of <cite>mu</cite>.</li>
+<li><strong>mu_multiplier</strong> (<em>float</em>) – Mu multiplier.</li>
+<li><strong>mu_cap</strong> (<em>float</em>) – Maximum permitted value for <cite>mu</cite>.</li>
+<li><strong>val_batch_size</strong> (<em>int</em>) – Validation/test batch size.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="condensa.opt.LC.compress">
+<code class="descname">compress</code><span class="sig-paren">(</span><em>w</em>, <em>pi</em>, <em>delta</em>, <em>trainset</em>, <em>testset</em>, <em>valset</em>, <em>loss_fn</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/condensa/opt/lc/lc.html#LC.compress"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.opt.LC.compress" title="Permalink to this definition">¶</a></dt>
+<dd><p>Main L-C compression method.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>w</strong> (<em>torch.nn.Module</em>) – Input model.</li>
+<li><strong>pi</strong> – Compression function.</li>
+<li><strong>delta</strong> – Decompression function.</li>
+<li><strong>trainset</strong> – Training dataset.</li>
+<li><strong>testset</strong> – Test dataset.</li>
+<li><strong>valset</strong> – Validation dataset.</li>
+<li><strong>loss_fn</strong> – Loss criterion.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="condensa.opt.LC.condensa_loss">
+<code class="descname">condensa_loss</code><span class="sig-paren">(</span><em>mu</em>, <em>w</em>, <em>theta</em>, <em>lm</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/condensa/opt/lc/lc.html#LC.condensa_loss"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.opt.LC.condensa_loss" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes L-C reconstruction loss.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>mu</strong> (<em>float</em>) – LC <cite>mu</cite> hyper-parameter value.</li>
+<li><strong>w</strong> (<em>torch.nn.Module</em>) – Input model.</li>
+<li><strong>theta</strong> (<em>torch.nn.Module</em>) – Compressed model.</li>
+<li><strong>lm</strong> (<em>torch.nn.Module</em>) – Lagrange multiplier.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="condensa.opt.LC.zero_">
+<code class="descname">zero_</code><span class="sig-paren">(</span><em>model</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/condensa/opt/lc/lc.html#LC.zero_"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.opt.LC.zero_" title="Permalink to this definition">¶</a></dt>
+<dd><p>Zeroes out model parameters.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>model</strong> (<em>torch.nn.Module</em>) – PyTorch model.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="functional.html" class="btn btn-neutral float-right" title="condensa.functional" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="tensor.html" class="btn btn-neutral" title="condensa.tensor" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, NVIDIA Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

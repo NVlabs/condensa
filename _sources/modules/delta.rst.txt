@@ -1,0 +1,8 @@
+:mod:`condensa.delta`
+=====================
+.. automodule:: condensa.delta
+
+Decompression Operators
+-----------------------
+.. automodule:: condensa.delta
+   :members:

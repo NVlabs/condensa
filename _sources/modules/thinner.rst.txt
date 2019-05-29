@@ -1,0 +1,11 @@
+:mod:`condensa.thinner`
+=======================
+.. automodule:: condensa.thinner
+
+Model Thinner
+-------------
+.. autoclass:: Thinner
+   :members:
+
+   .. automethod:: __init__
+

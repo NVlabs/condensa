@@ -1,0 +1,1153 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Condensa &mdash; Condensa 0.5-beta documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Condensa
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5-beta
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="guide/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide/usage.html">Usage</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules/compressor.html"><code class="docutils literal notranslate"><span class="pre">condensa.compressor</span></code></a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Condensa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Condensa</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/condensa.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="condensa">
+<h1>Condensa<a class="headerlink" href="#condensa" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-condensa.pi">
+<span id="compression-operators"></span><h2>Compression Operators<a class="headerlink" href="#module-condensa.pi" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="condensa.pi.blockprune">
+<code class="descclassname">condensa.pi.</code><code class="descname">blockprune</code><span class="sig-paren">(</span><em>module</em>, <em>threshold</em>, <em>block_size</em>, <em>criteria</em>, <em>align=None</em>, <em>parameter='weight'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/pi.html#blockprune"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.pi.blockprune" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prunes blocks of module parameters based on magnitude (inplace).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>module</strong> (<cite>torch.nn.Module</cite>) – PyTorch module.</li>
+<li><strong>threshold</strong> (<cite>float</cite>) – Magnitude threshold for pruning.</li>
+<li><strong>block_size</strong> (<cite>Tuple</cite>) – Block size for pruning.</li>
+<li><strong>criteria</strong> (<cite>condensa.functional</cite>) – Aggregation function for thresholding.</li>
+<li><strong>align</strong> (<cite>int</cite>) – Alignment of compressed parameters.</li>
+<li><strong>parameter</strong> (<em>str</em>) – Module parameter to prune (default: ‘weight’)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="condensa.pi.filter_prune">
+<code class="descclassname">condensa.pi.</code><code class="descname">filter_prune</code><span class="sig-paren">(</span><em>module</em>, <em>threshold</em>, <em>criteria</em>, <em>align=None</em>, <em>prune_bias=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/pi.html#filter_prune"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.pi.filter_prune" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prunes 3D blocks (filters) of module parameters based on magnitude (inplace).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>module</strong> (<cite>torch.nn.Module</cite>) – PyTorch module.</li>
+<li><strong>threshold</strong> (<cite>float</cite>) – Magnitude threshold for pruning.</li>
+<li><strong>criteria</strong> (<cite>condensa.functional</cite>) – Aggregation function for thresholding.</li>
+<li><strong>align</strong> (<cite>int</cite>) – Alignment of compressed parameters.</li>
+<li><strong>prune_bias</strong> (<cite>bool</cite>) – Whether to prune corresponding biases.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="condensa.pi.neuron_prune">
+<code class="descclassname">condensa.pi.</code><code class="descname">neuron_prune</code><span class="sig-paren">(</span><em>module</em>, <em>threshold</em>, <em>criteria</em>, <em>align=None</em>, <em>prune_bias=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/pi.html#neuron_prune"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.pi.neuron_prune" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prunes neurons based on magnitude (inplace).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>module</strong> (<cite>torch.nn.Module</cite>) – PyTorch module.</li>
+<li><strong>threshold</strong> (<cite>float</cite>) – Magnitude threshold for pruning.</li>
+<li><strong>criteria</strong> (<cite>condensa.functional</cite>) – Aggregation function for thresholding.</li>
+<li><strong>align</strong> (<cite>int</cite>) – Alignment of compressed parameters.</li>
+<li><strong>prune_bias</strong> (<cite>bool</cite>) – Whether to prune corresponding biases.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="condensa.pi.prune">
+<code class="descclassname">condensa.pi.</code><code class="descname">prune</code><span class="sig-paren">(</span><em>module</em>, <em>threshold</em>, <em>parameter='weight'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/pi.html#prune"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.pi.prune" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prunes module parameters based on magnitude (inplace).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>module</strong> (<cite>torch.nn.Module</cite>) – PyTorch module.</li>
+<li><strong>threshold</strong> (<cite>float</cite>) – Magnitude threshold for pruning.</li>
+<li><strong>parameter</strong> (<em>str</em>) – Module parameter to prune (default: ‘weight’)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="condensa.pi.quantize">
+<code class="descclassname">condensa.pi.</code><code class="descname">quantize</code><span class="sig-paren">(</span><em>module</em>, <em>dtype</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/pi.html#quantize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.pi.quantize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Quantizes module to given data type (inplace).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>module</strong> (<cite>torch.nn.Module</cite>) – PyTorch module.</li>
+<li><strong>dtype</strong> – Target data type.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-condensa.delta">
+<span id="decompression-operators"></span><h2>Decompression Operators<a class="headerlink" href="#module-condensa.delta" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="condensa.delta.dequantize">
+<code class="descclassname">condensa.delta.</code><code class="descname">dequantize</code><span class="sig-paren">(</span><em>module</em>, <em>dtype</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/delta.html#dequantize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.delta.dequantize" title="Permalink to this definition">¶</a></dt>
+<dd><p>De-quantizes module to given data type (inplace).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>module</strong> (<cite>torch.nn.Module</cite>) – PyTorch module.</li>
+<li><strong>dtype</strong> – Target data type.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-condensa.tensor">
+<span id="tensor-operators"></span><h2>Tensor Operators<a class="headerlink" href="#module-condensa.tensor" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="condensa.tensor.aggregate">
+<code class="descclassname">condensa.tensor.</code><code class="descname">aggregate</code><span class="sig-paren">(</span><em>tensor</em>, <em>blocksize</em>, <em>criteria</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/tensor.html#aggregate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.tensor.aggregate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Aggregates tensor dimensions according to criteria.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>tensor</strong> (<cite>torch.Tensor</cite>) – PyTorch tensor</li>
+<li><strong>blocksize</strong> (<cite>Tuple(int)</cite>) – Size of blocks to aggregate</li>
+<li><strong>criteria</strong> (<cite>condensa.functional</cite>) – Aggregation criteria</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Aggregated tensor</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><cite>torch.Tensor</cite></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="condensa.tensor.aggregate_filters">
+<code class="descclassname">condensa.tensor.</code><code class="descname">aggregate_filters</code><span class="sig-paren">(</span><em>tensor</em>, <em>criteria</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/tensor.html#aggregate_filters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.tensor.aggregate_filters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Aggregates 3D filters in given weight tensor.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>tensor</strong> (<cite>torch.Tensor</cite>) – PyTorch tensor</li>
+<li><strong>criteria</strong> (<cite>condensa.functional</cite>) – Aggregation criteria</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Filter-aggregated tensor</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><cite>torch.Tensor</cite></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="condensa.tensor.aggregate_neurons">
+<code class="descclassname">condensa.tensor.</code><code class="descname">aggregate_neurons</code><span class="sig-paren">(</span><em>tensor</em>, <em>criteria</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/tensor.html#aggregate_neurons"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.tensor.aggregate_neurons" title="Permalink to this definition">¶</a></dt>
+<dd><p>Aggregates neurons (rows) in given weight matrix.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>tensor</strong> (<cite>torch.Tensor</cite>) – PyTorch tensor</li>
+<li><strong>criteria</strong> (<cite>condensa.functional</cite>) – Aggregation criteria</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Neuron-aggregated tensor</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><cite>torch.Tensor</cite></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="condensa.tensor.apply_mask">
+<code class="descclassname">condensa.tensor.</code><code class="descname">apply_mask</code><span class="sig-paren">(</span><em>tensor</em>, <em>mask</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/tensor.html#apply_mask"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.tensor.apply_mask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes masked version of tensor.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>tensor</strong> (<cite>torch.Tensor</cite>) – PyTorch tensor</li>
+<li><strong>mask</strong> (<cite>torch.Tensor</cite>) – Binary mask</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Masked version of <cite>tensor</cite></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><cite>torch.Tensor</cite></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="condensa.tensor.apply_mask_inplace">
+<code class="descclassname">condensa.tensor.</code><code class="descname">apply_mask_inplace</code><span class="sig-paren">(</span><em>tensor</em>, <em>mask</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/tensor.html#apply_mask_inplace"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.tensor.apply_mask_inplace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies binary mask in-place.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>tensor</strong> (<cite>torch.Tensor</cite>) – PyTorch tensor</li>
+<li><strong>mask</strong> (<cite>torch.Tensor</cite>) – Binary mask</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="condensa.tensor.block_mask">
+<code class="descclassname">condensa.tensor.</code><code class="descname">block_mask</code><span class="sig-paren">(</span><em>tensor</em>, <em>threshold</em>, <em>blocksize</em>, <em>criteria</em>, <em>align=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/tensor.html#block_mask"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.tensor.block_mask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes an n-D binary mask for given magnitude threshold.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>tensor</strong> (<cite>torch.Tensor</cite>) – PyTorch tensor</li>
+<li><strong>threshold</strong> (<cite>float</cite>) – magnitude threshold for pruning</li>
+<li><strong>blocksize</strong> (<cite>Tuple</cite>) – desired block size (Tuple)</li>
+<li><strong>criteria</strong> (<cite>condensa.functional</cite>) – aggregation function for thresholding (default: max)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Mask</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><cite>torch.Tensor</cite></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="condensa.tensor.density">
+<code class="descclassname">condensa.tensor.</code><code class="descname">density</code><span class="sig-paren">(</span><em>tensor</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/tensor.html#density"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.tensor.density" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the ratio of nonzeros to total elements in a tensor.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>tensor</strong> (<cite>torch.Tensor</cite>) – PyTorch tensor</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Ratio of nonzeros to total elements</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><cite>float</cite></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="condensa.tensor.simple_mask">
+<code class="descclassname">condensa.tensor.</code><code class="descname">simple_mask</code><span class="sig-paren">(</span><em>tensor</em>, <em>threshold</em>, <em>align=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/tensor.html#simple_mask"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.tensor.simple_mask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes a simple binary mask for given magnitude threshold.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>tensor</strong> (<cite>torch.Tensor</cite>) – PyTorch tensor</li>
+<li><strong>threshold</strong> (<cite>float</cite>) – magnitude threshold for pruning</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Mask</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><cite>torch.Tensor</cite></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="condensa.tensor.sparsity">
+<code class="descclassname">condensa.tensor.</code><code class="descname">sparsity</code><span class="sig-paren">(</span><em>tensor</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/tensor.html#sparsity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.tensor.sparsity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the ratio of zeros to total elements in a tensor.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>tensor</strong> (<em>torch.Tensor</em>) – PyTorch tensor</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Ratio of zeros to total elements</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><cite>float</cite></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="condensa.tensor.threshold">
+<code class="descclassname">condensa.tensor.</code><code class="descname">threshold</code><span class="sig-paren">(</span><em>tensor</em>, <em>density</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/tensor.html#threshold"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.tensor.threshold" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes a magnitude-based threshold for given tensor.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>tensor</strong> (<cite>torch.Tensor</cite>) – PyTorch tensor</li>
+<li><strong>density</strong> (<cite>float</cite>) – Desired ratio of nonzeros to total elements</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Magnitude threshold</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><cite>float</cite></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-condensa.schemes">
+<span id="compression-schemes"></span><h2>Compression Schemes<a class="headerlink" href="#module-condensa.schemes" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="condensa.schemes.BlockPrune">
+<em class="property">class </em><code class="descclassname">condensa.schemes.</code><code class="descname">BlockPrune</code><span class="sig-paren">(</span><em>density</em>, <em>block_size=(8</em>, <em>8)</em>, <em>criteria=&lt;function l2norm&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/schemes.html#BlockPrune"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.schemes.BlockPrune" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Prunes blocks in Linear layers.</p>
+<dl class="method">
+<dt id="condensa.schemes.BlockPrune.delta">
+<code class="descname">delta</code><span class="sig-paren">(</span><em>module</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/schemes.html#BlockPrune.delta"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.schemes.BlockPrune.delta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies de-compression scheme to module.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>module</strong> (<cite>torch.nn.Module</cite>) – PyTorch module.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="condensa.schemes.BlockPrune.pi">
+<code class="descname">pi</code><span class="sig-paren">(</span><em>module</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/schemes.html#BlockPrune.pi"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.schemes.BlockPrune.pi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies compression scheme to module.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>module</strong> (<cite>torch.nn.Module</cite>) – PyTorch module.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="condensa.schemes.BlockPrune.threshold">
+<code class="descname">threshold</code><span class="sig-paren">(</span><em>module</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/schemes.html#BlockPrune.threshold"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.schemes.BlockPrune.threshold" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes magnitude threshold.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>module</strong> (<cite>torch.nn.Module</cite>) – PyTorch module.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="condensa.schemes.Compose">
+<em class="property">class </em><code class="descclassname">condensa.schemes.</code><code class="descname">Compose</code><span class="sig-paren">(</span><em>schemes</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/schemes.html#Compose"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.schemes.Compose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Composes two or more schemes together.</p>
+<dl class="method">
+<dt id="condensa.schemes.Compose.delta">
+<code class="descname">delta</code><span class="sig-paren">(</span><em>module</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/schemes.html#Compose.delta"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.schemes.Compose.delta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies de-compression scheme to module.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>module</strong> (<cite>torch.nn.Module</cite>) – PyTorch module.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="condensa.schemes.Compose.pi">
+<code class="descname">pi</code><span class="sig-paren">(</span><em>module</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/schemes.html#Compose.pi"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.schemes.Compose.pi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies compression scheme to module.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>module</strong> (<cite>torch.nn.Module</cite>) – PyTorch module.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="condensa.schemes.FilterPrune">
+<em class="property">class </em><code class="descclassname">condensa.schemes.</code><code class="descname">FilterPrune</code><span class="sig-paren">(</span><em>density</em>, <em>align=None</em>, <em>criteria=&lt;function l2norm&gt;</em>, <em>prune_bias=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/schemes.html#FilterPrune"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.schemes.FilterPrune" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Prunes filters from convolutional layers.</p>
+<dl class="method">
+<dt id="condensa.schemes.FilterPrune.delta">
+<code class="descname">delta</code><span class="sig-paren">(</span><em>module</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/schemes.html#FilterPrune.delta"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.schemes.FilterPrune.delta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies de-compression scheme to module.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>module</strong> (<cite>torch.nn.Module</cite>) – PyTorch module.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="condensa.schemes.FilterPrune.pi">
+<code class="descname">pi</code><span class="sig-paren">(</span><em>module</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/schemes.html#FilterPrune.pi"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.schemes.FilterPrune.pi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies compression scheme to module.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>module</strong> (<cite>torch.nn.Module</cite>) – PyTorch module.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="condensa.schemes.FilterPrune.threshold">
+<code class="descname">threshold</code><span class="sig-paren">(</span><em>module</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/schemes.html#FilterPrune.threshold"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.schemes.FilterPrune.threshold" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes magnitude threshold.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>module</strong> (<cite>torch.nn.Module</cite>) – PyTorch module.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="condensa.schemes.NeuronPrune">
+<em class="property">class </em><code class="descclassname">condensa.schemes.</code><code class="descname">NeuronPrune</code><span class="sig-paren">(</span><em>density</em>, <em>align=None</em>, <em>criteria=&lt;function l2norm&gt;</em>, <em>prune_bias=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/schemes.html#NeuronPrune"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.schemes.NeuronPrune" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Prunes neurons from fully-connected layers.</p>
+<dl class="method">
+<dt id="condensa.schemes.NeuronPrune.delta">
+<code class="descname">delta</code><span class="sig-paren">(</span><em>module</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/schemes.html#NeuronPrune.delta"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.schemes.NeuronPrune.delta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies de-compression scheme to module.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>module</strong> (<cite>torch.nn.Module</cite>) – PyTorch module.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="condensa.schemes.NeuronPrune.pi">
+<code class="descname">pi</code><span class="sig-paren">(</span><em>module</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/schemes.html#NeuronPrune.pi"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.schemes.NeuronPrune.pi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies compression scheme to module.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>module</strong> (<cite>torch.nn.Module</cite>) – PyTorch module.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="condensa.schemes.NeuronPrune.threshold">
+<code class="descname">threshold</code><span class="sig-paren">(</span><em>module</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/schemes.html#NeuronPrune.threshold"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.schemes.NeuronPrune.threshold" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes magnitude threshold.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>module</strong> (<cite>torch.nn.Module</cite>) – PyTorch module.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="condensa.schemes.Prune">
+<em class="property">class </em><code class="descclassname">condensa.schemes.</code><code class="descname">Prune</code><span class="sig-paren">(</span><em>density</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/schemes.html#Prune"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.schemes.Prune" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Prunes network to given density.</p>
+<dl class="method">
+<dt id="condensa.schemes.Prune.delta">
+<code class="descname">delta</code><span class="sig-paren">(</span><em>module</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/schemes.html#Prune.delta"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.schemes.Prune.delta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies de-compression scheme to module.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>module</strong> (<cite>torch.nn.Module</cite>) – PyTorch module.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="condensa.schemes.Prune.pi">
+<code class="descname">pi</code><span class="sig-paren">(</span><em>module</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/schemes.html#Prune.pi"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.schemes.Prune.pi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies compression scheme to module.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>module</strong> (<cite>torch.nn.Module</cite>) – PyTorch module.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="condensa.schemes.Prune.threshold">
+<code class="descname">threshold</code><span class="sig-paren">(</span><em>module</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/schemes.html#Prune.threshold"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.schemes.Prune.threshold" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes magnitude threshold.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>module</strong> (<cite>torch.nn.Module</cite>) – PyTorch module.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="condensa.schemes.Quantize">
+<em class="property">class </em><code class="descclassname">condensa.schemes.</code><code class="descname">Quantize</code><span class="sig-paren">(</span><em>dtype=&lt;condensa.dtypes.DType object&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/schemes.html#Quantize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.schemes.Quantize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Quantizes network to given data-type.</p>
+<dl class="method">
+<dt id="condensa.schemes.Quantize.delta">
+<code class="descname">delta</code><span class="sig-paren">(</span><em>module</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/schemes.html#Quantize.delta"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.schemes.Quantize.delta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies de-compression scheme to module.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>module</strong> (<cite>torch.nn.Module</cite>) – PyTorch module.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="condensa.schemes.Quantize.pi">
+<code class="descname">pi</code><span class="sig-paren">(</span><em>module</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/schemes.html#Quantize.pi"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.schemes.Quantize.pi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies compression scheme to module.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>module</strong> (<cite>torch.nn.Module</cite>) – PyTorch module.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="condensa.schemes.StructurePrune">
+<em class="property">class </em><code class="descclassname">condensa.schemes.</code><code class="descname">StructurePrune</code><span class="sig-paren">(</span><em>density</em>, <em>align=None</em>, <em>criteria=&lt;function l2norm&gt;</em>, <em>prune_bias=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/schemes.html#StructurePrune"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.schemes.StructurePrune" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Combines neuron and filter pruning using a single threshold value.</p>
+<dl class="method">
+<dt id="condensa.schemes.StructurePrune.delta">
+<code class="descname">delta</code><span class="sig-paren">(</span><em>module</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/schemes.html#StructurePrune.delta"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.schemes.StructurePrune.delta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies de-compression scheme to module.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>module</strong> (<cite>torch.nn.Module</cite>) – PyTorch module.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="condensa.schemes.StructurePrune.pi">
+<code class="descname">pi</code><span class="sig-paren">(</span><em>module</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/schemes.html#StructurePrune.pi"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.schemes.StructurePrune.pi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies compression scheme to module.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>module</strong> (<cite>torch.nn.Module</cite>) – PyTorch module.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="condensa.schemes.StructurePrune.threshold">
+<code class="descname">threshold</code><span class="sig-paren">(</span><em>module</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/schemes.html#StructurePrune.threshold"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.schemes.StructurePrune.threshold" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes magnitude threshold.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>module</strong> (<cite>torch.nn.Module</cite>) – PyTorch module.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-condensa.functional">
+<span id="aggregation-functions"></span><h2>Aggregation Functions<a class="headerlink" href="#module-condensa.functional" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="condensa.functional.l2norm">
+<code class="descclassname">condensa.functional.</code><code class="descname">l2norm</code><span class="sig-paren">(</span><em>tensor</em>, <em>dim</em>, <em>keepdim</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/functional.html#l2norm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.functional.l2norm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the l2-norm of elements in input tensor.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>tensor</strong> (<cite>torch.nn.Module</cite>) – PyTorch tensor.</li>
+<li><strong>dim</strong> (<cite>int</cite>) – Reduction dimension.</li>
+<li><strong>keepdim</strong> (<cite>bool</cite>) – Whether the output has <cite>dim</cite> retained.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">l2-norm of input tensor.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="condensa.functional.max">
+<code class="descclassname">condensa.functional.</code><code class="descname">max</code><span class="sig-paren">(</span><em>tensor</em>, <em>dim</em>, <em>keepdim</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/functional.html#max"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.functional.max" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the maximum value of elements in input tensor.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>tensor</strong> (<cite>torch.nn.Module</cite>) – PyTorch tensor.</li>
+<li><strong>dim</strong> (<cite>int</cite>) – Reduction dimension.</li>
+<li><strong>keepdim</strong> (<cite>bool</cite>) – Whether the output has <cite>dim</cite> retained.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Max of input tensor.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="condensa.functional.mean">
+<code class="descclassname">condensa.functional.</code><code class="descname">mean</code><span class="sig-paren">(</span><em>tensor</em>, <em>dim</em>, <em>keepdim</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/functional.html#mean"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.functional.mean" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the mean value of elements in input tensor.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>tensor</strong> (<cite>torch.nn.Module</cite>) – PyTorch tensor.</li>
+<li><strong>dim</strong> (<cite>int</cite>) – Reduction dimension.</li>
+<li><strong>keepdim</strong> (<cite>bool</cite>) – Whether the output has <cite>dim</cite> retained.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Mean value of input tensor.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="condensa.functional.min">
+<code class="descclassname">condensa.functional.</code><code class="descname">min</code><span class="sig-paren">(</span><em>tensor</em>, <em>dim</em>, <em>keepdim</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/functional.html#min"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.functional.min" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the minimum value of elements in input tensor.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>tensor</strong> (<cite>torch.nn.Module</cite>) – PyTorch tensor.</li>
+<li><strong>dim</strong> (<cite>int</cite>) – Reduction dimension.</li>
+<li><strong>keepdim</strong> (<cite>bool</cite>) – Whether the output has <cite>dim</cite> retained.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Min of input tensor.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="condensa.functional.sum">
+<code class="descclassname">condensa.functional.</code><code class="descname">sum</code><span class="sig-paren">(</span><em>tensor</em>, <em>dim</em>, <em>keepdim</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/functional.html#sum"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.functional.sum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the sum of elements in input tensor.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>tensor</strong> (<cite>torch.nn.Module</cite>) – PyTorch tensor.</li>
+<li><strong>dim</strong> (<cite>int</cite>) – Reduction dimension.</li>
+<li><strong>keepdim</strong> (<cite>bool</cite>) – Whether the output has <cite>dim</cite> retained.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Sum of input tensor.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-condensa.util">
+<span id="utilities"></span><h2>Utilities<a class="headerlink" href="#module-condensa.util" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="condensa.util.EventTimer">
+<em class="property">class </em><code class="descclassname">condensa.util.</code><code class="descname">EventTimer</code><a class="reference internal" href="_modules/condensa/util.html#EventTimer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.util.EventTimer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Simple timer class.</p>
+<dl class="attribute">
+<dt id="condensa.util.EventTimer.elapsed_seconds">
+<code class="descname">elapsed_seconds</code><a class="headerlink" href="#condensa.util.EventTimer.elapsed_seconds" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns elapsed seconds.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="condensa.util.EventTimer.reset">
+<code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/util.html#EventTimer.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.util.EventTimer.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reset timer.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="condensa.util.accuracy">
+<code class="descclassname">condensa.util.</code><code class="descname">accuracy</code><span class="sig-paren">(</span><em>output</em>, <em>target</em>, <em>topk=(1</em>, <em>)</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/util.html#accuracy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.util.accuracy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes model accuracy for the specified values of k.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>output</strong> (<cite>torch.Tensor</cite>) – Predicted output batch</li>
+<li><strong>target</strong> (<cite>torch.Tensor</cite>) – Actual output batch</li>
+<li><strong>topk</strong> (<cite>Tuple</cite>) – Top-k value</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Model accuracy</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><cite>float</cite></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="condensa.util.compressed_model_stats">
+<code class="descclassname">condensa.util.</code><code class="descname">compressed_model_stats</code><span class="sig-paren">(</span><em>w</em>, <em>wc</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/util.html#compressed_model_stats"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.util.compressed_model_stats" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve various statistics for compressed model.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>w</strong> (<cite>torch.nn.Module</cite>) – Original model</li>
+<li><strong>wc</strong> (<cite>torch.nn.Module</cite>) – Compressed model</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Dictionary of compressed model statistics</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><cite>dict</cite></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="condensa.util.is_leaf_node">
+<code class="descclassname">condensa.util.</code><code class="descname">is_leaf_node</code><span class="sig-paren">(</span><em>module</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/util.html#is_leaf_node"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.util.is_leaf_node" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if given module is a leaf module.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>module</strong> (<cite>torch.nn.Module</cite>) – PyTorch module</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Boolean value representing whether module is a leaf.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><cite>bool</cite></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="condensa.util.loss_and_accuracy">
+<code class="descclassname">condensa.util.</code><code class="descname">loss_and_accuracy</code><span class="sig-paren">(</span><em>model</em>, <em>loss_fn</em>, <em>dataloader</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/util.html#loss_and_accuracy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.util.loss_and_accuracy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes loss and accuracy of given model.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>model</strong> (<cite>torch.nn.Module</cite>) – PyTorch model</li>
+<li><strong>loss_fn</strong> – Loss function</li>
+<li><strong>dataloader</strong> – Data loader to use</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Loss and accuracy</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Tuple(loss, accuracy)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="condensa.util.magnitude_threshold">
+<code class="descclassname">condensa.util.</code><code class="descname">magnitude_threshold</code><span class="sig-paren">(</span><em>module</em>, <em>density</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/util.html#magnitude_threshold"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.util.magnitude_threshold" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes a magnitude-based threshold for given module.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>module</strong> (<cite>torch.nn.Module</cite>) – PyTorch module</li>
+<li><strong>density</strong> (<cite>float</cite>) – Desired ratio of nonzeros to total elements</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Magnitude threshold</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><cite>float</cite></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="condensa.util.pretrain">
+<code class="descclassname">condensa.util.</code><code class="descname">pretrain</code><span class="sig-paren">(</span><em>n_iter</em>, <em>model</em>, <em>trainset</em>, <em>criterion</em>, <em>optimizer</em>, <em>seed</em>, <em>batch_size</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condensa/util.html#pretrain"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condensa.util.pretrain" title="Permalink to this definition">¶</a></dt>
+<dd><p>No-frills pre-training method.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>n_iter</strong> (<cite>int</cite>) – Number of iterations</li>
+<li><strong>model</strong> (<cite>torch.nn.Module</cite>) – PyTorch model</li>
+<li><strong>trainset</strong> – Training set</li>
+<li><strong>criterion</strong> – Loss criterion</li>
+<li><strong>optimizer</strong> – Optimizer to use</li>
+<li><strong>seed</strong> (<cite>int</cite>) – Seed value</li>
+<li><strong>batch_size</strong> (<cite>int</cite>) – Batch size to use for pre-training</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, NVIDIA Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
