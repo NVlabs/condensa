@@ -78,7 +78,7 @@ If you use Condensa for research, please consider citing the following paper:
 ```
 @article{condensa2019,
     title = {A Programming System for Model Compression},
-    author = {Joseph, Vinu and Muralidharan, Saurav and Garland, Michael},
+    author = {Joseph, Vinu and Muralidharan, Saurav and Garg, Animesh and Garland, Michael},
     journal = {CoRR},
     volume = {}
     year = {2019},
