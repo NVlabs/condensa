@@ -38,7 +38,7 @@ build_deps()
 
 setup(name='condensa',
       version=version,
-      description='Condensa model compression framework',
+      description='Condensa Programmable Model Compression Framework',
       url='https://nvlabs.github.io/condensa/',
       author='Saurav Muralidharan',
       author_email='sauravm@nvidia.com',
