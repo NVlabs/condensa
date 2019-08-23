@@ -195,6 +195,9 @@ class LC(object):
         _print_acc = self.debugging_flags['print_accuracies']\
                      if 'print_accuracies' in self.debugging_flags\
                      else False
+        _disable_train_stats = self.debugging_flags['disable_train_stats']\
+                     if 'disable_train_stats' in self.debugging_flags\
+                     else False
         timer_lc = EventTimer()
 
         if self.use_cuda: cudnn.benchmark = True
@@ -236,8 +239,9 @@ class LC(object):
         optimizer.reset_state()
 
         if _print_acc:
-            w_train_loss, w_train_acc = util.loss_and_accuracy(w, loss_fn, trainloader)
-            logger.info('[Condensa] w TRAIN\tloss={:.5f}, acc={:.4f}'.format(w_train_loss, w_train_acc))
+            if not _disable_train_stats:
+                w_train_loss, w_train_acc = util.loss_and_accuracy(w, loss_fn, trainloader)
+                logger.info('[Condensa] w TRAIN\tloss={:.5f}, acc={:.4f}'.format(w_train_loss, w_train_acc))
             if validate:
                 w_val_loss, w_val_acc = util.loss_and_accuracy(w, loss_fn, valloader)
                 logger.info('[Condensa] w VAL\tloss={:.5f}, acc={:4f}'.format(w_val_loss, w_val_acc))
@@ -245,8 +249,9 @@ class LC(object):
                 w_test_loss, w_test_acc = util.loss_and_accuracy(w, loss_fn, testloader)
                 logger.info('[Condensa] w TEST\tloss={:.5f}, acc={:4f}'.format(w_test_loss, w_test_acc))
         else:
-            w_train_loss = util.loss(w, loss_fn, trainloader)
-            logger.info('[Condensa] w TRAIN\tloss={:.5f}'.format(w_train_loss))
+            if not _disable_train_stats:
+                w_train_loss = util.loss(w, loss_fn, trainloader)
+                logger.info('[Condensa] w TRAIN\tloss={:.5f}'.format(w_train_loss))
             if validate:
                 w_val_loss = util.loss(w, loss_fn, valloader)
                 logger.info('[Condensa] w VAL\tloss={:.5f}'.format(w_val_loss))
@@ -355,11 +360,12 @@ class LC(object):
             pi(theta)
 
             if _print_acc:
-                nested_train_loss, nested_train_acc = util.loss_and_accuracy(
-                    theta, loss_fn, trainloader)
-                logger.info(
-                    '[Condensa] Nested (theta) TRAIN\tloss={:.5f}, acc={:.4f}'.
-                    format(nested_train_loss, nested_train_acc))
+                if not _disable_train_stats:
+                    nested_train_loss, nested_train_acc = util.loss_and_accuracy(
+                        theta, loss_fn, trainloader)
+                    logger.info(
+                        '[Condensa] Nested (theta) TRAIN\tloss={:.5f}, acc={:.4f}'.
+                        format(nested_train_loss, nested_train_acc))
                 if validate:
                     nested_val_loss, nested_val_acc = util.loss_and_accuracy(
                         theta, loss_fn, valloader)
@@ -373,10 +379,11 @@ class LC(object):
                         '[Condensa] Nested (theta) TEST\tloss={:.5f}, acc={:.4f}'.
                         format(nested_test_loss, nested_test_acc))
             else:
-                nested_train_loss = util.loss(theta, loss_fn, trainloader)
-                logger.info(
-                    '[Condensa] Nested (theta) TRAIN\tloss={:.5f}'.
-                    format(nested_train_loss))
+                if not _disable_train_stats:
+                    nested_train_loss = util.loss(theta, loss_fn, trainloader)
+                    logger.info(
+                        '[Condensa] Nested (theta) TRAIN\tloss={:.5f}'.
+                        format(nested_train_loss))
                 if validate:
                     nested_val_loss = util.loss(theta, loss_fn, valloader)
                     logger.info(
@@ -387,7 +394,8 @@ class LC(object):
                     logger.info(
                         '[Condensa] Nested (theta) TEST\tloss={:.5f}'.
                         format(nested_test_loss))
-            train_losses.append(nested_train_loss)
+            if not _disable_train_stats:
+                train_losses.append(nested_train_loss)
             if test: test_losses.append(nested_test_loss)
             if validate: val_losses.append(nested_val_loss)
 
