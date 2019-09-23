@@ -17,6 +17,8 @@ import sys
 sys.path.insert(0, os.path.abspath('../..'))
 sys.setrecursionlimit(1500)
 
+import condensa
+
 # -- Project information -----------------------------------------------------
 
 project = u'Condensa'
@@ -26,7 +28,7 @@ author = u'Saurav Muralidharan'
 # The short X.Y version
 version = '0.5'
 # The full version, including alpha/beta/rc tags
-release = '0.5-beta'
+release = condensa.__version__
 
 
 # -- General configuration ---------------------------------------------------
@@ -43,13 +45,9 @@ extensions = [
     'sphinx.ext.mathjax',
     'sphinx.ext.ifconfig',
     'sphinx.ext.napoleon',
-    'autoapi.extension'
 ]
 
 napoleon_use_ivar = True
-
-autoapi_dirs = ['../../condensa']
-autoapi_generate_api_docs = False
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
