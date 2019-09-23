@@ -30,15 +30,20 @@ Condensa is under active development, and bug reports, pull requests, and other 
    :maxdepth: 2
    :caption: Module API Reference
 
-   modules/compressor
    modules/schemes
    modules/pi
-   modules/delta
-   modules/tensor
+   modules/compressor
    modules/opt
+   modules/finetuner
+   modules/tensor
    modules/functional
-   modules/thinner
    modules/util
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Notes
+
+   modules/lc
 
 Indices and Tables
 ------------------

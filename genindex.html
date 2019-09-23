@@ -18,32 +18,36 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-146596996-1"></script>
+        <script type="text/javascript" src="_static/ga_tracker.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="#" />
     <link rel="search" title="Search" href="search.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -57,7 +61,7 @@
             
             
               <div class="version">
-                0.5-beta
+                0.5
               </div>
             
           
@@ -88,15 +92,18 @@
 </ul>
 <p class="caption"><span class="caption-text">Module API Reference</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="modules/compressor.html"><code class="docutils literal notranslate"><span class="pre">condensa.compressor</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/schemes.html"><code class="docutils literal notranslate"><span class="pre">condensa.schemes</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/pi.html"><code class="docutils literal notranslate"><span class="pre">condensa.pi</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/delta.html"><code class="docutils literal notranslate"><span class="pre">condensa.delta</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/tensor.html"><code class="docutils literal notranslate"><span class="pre">condensa.tensor</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/opt.html"><code class="docutils literal notranslate"><span class="pre">condensa.opt</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/functional.html"><code class="docutils literal notranslate"><span class="pre">condensa.functional</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/thinner.html"><code class="docutils literal notranslate"><span class="pre">condensa.thinner</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/util.html"><code class="docutils literal notranslate"><span class="pre">condensa.util</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/schemes.html">Compression Schemes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/pi.html">Compression Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/compressor.html">Model Compressor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/opt.html">Optimizers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/finetuner.html">Model Fine-Tuner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/tensor.html">Tensor Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/functional.html">Aggregation Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/util.html">Utilities</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules/lc.html">L-C Optimizer Usage</a></li>
 </ul>
 
             
@@ -185,9 +192,11 @@
 <h2 id="_">_</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/compressor.html#condensa.compressor.Compressor.__init__">__init__() (condensa.compressor.Compressor method)</a>
+      <li><a href="modules/compressor.html#condensa.Compressor.__init__">__init__() (condensa.Compressor method)</a>
 
       <ul>
+        <li><a href="modules/finetuner.html#condensa.finetune.FineTuner.__init__">(condensa.finetune.FineTuner method)</a>
+</li>
         <li><a href="modules/opt.html#condensa.opt.DC.__init__">(condensa.opt.DC method)</a>
 </li>
         <li><a href="modules/opt.html#condensa.opt.LC.__init__">(condensa.opt.LC method)</a>
@@ -205,8 +214,6 @@
         <li><a href="modules/schemes.html#condensa.schemes.Quantize.__init__">(condensa.schemes.Quantize method)</a>
 </li>
         <li><a href="modules/schemes.html#condensa.schemes.StructurePrune.__init__">(condensa.schemes.StructurePrune method)</a>
-</li>
-        <li><a href="modules/thinner.html#condensa.thinner.Thinner.__init__">(condensa.thinner.Thinner method)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -228,6 +235,8 @@
       <li><a href="modules/tensor.html#condensa.tensor.apply_mask">apply_mask() (in module condensa.tensor)</a>
 </li>
       <li><a href="modules/tensor.html#condensa.tensor.apply_mask_inplace">apply_mask_inplace() (in module condensa.tensor)</a>
+</li>
+      <li><a href="modules/util.html#condensa.util.AverageMeter">AverageMeter (class in condensa.util)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -259,27 +268,23 @@
       </ul></li>
       <li><a href="modules/util.html#condensa.util.compressed_model_stats">compressed_model_stats() (in module condensa.util)</a>
 </li>
-      <li><a href="modules/compressor.html#condensa.compressor.Compressor">Compressor (class in condensa.compressor)</a>
+      <li><a href="modules/compressor.html#condensa.Compressor">Compressor (class in condensa)</a>
 </li>
-      <li><a href="modules/compressor.html#module-condensa.compressor">condensa.compressor (module)</a>
-</li>
-      <li><a href="modules/delta.html#module-condensa.delta">condensa.delta (module)</a>, <a href="modules/delta.html#module-condensa.delta">[1]</a>
+      <li><a href="modules/pi.html#module-condensa.delta">condensa.delta (module)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/functional.html#module-condensa.functional">condensa.functional (module)</a>, <a href="modules/functional.html#module-condensa.functional">[1]</a>
+      <li><a href="modules/functional.html#module-condensa.functional">condensa.functional (module)</a>
 </li>
       <li><a href="modules/opt.html#module-condensa.opt">condensa.opt (module)</a>
 </li>
-      <li><a href="modules/pi.html#module-condensa.pi">condensa.pi (module)</a>, <a href="modules/pi.html#module-condensa.pi">[1]</a>
+      <li><a href="modules/pi.html#module-condensa.pi">condensa.pi (module)</a>
 </li>
       <li><a href="modules/schemes.html#module-condensa.schemes">condensa.schemes (module)</a>
 </li>
-      <li><a href="modules/tensor.html#module-condensa.tensor">condensa.tensor (module)</a>, <a href="modules/tensor.html#module-condensa.tensor">[1]</a>
+      <li><a href="modules/tensor.html#module-condensa.tensor">condensa.tensor (module)</a>
 </li>
-      <li><a href="modules/thinner.html#module-condensa.thinner">condensa.thinner (module)</a>
-</li>
-      <li><a href="modules/util.html#module-condensa.util">condensa.util (module)</a>, <a href="modules/util.html#module-condensa.util">[1]</a>
+      <li><a href="modules/util.html#module-condensa.util">condensa.util (module)</a>
 </li>
       <li><a href="modules/opt.html#condensa.opt.LC.condensa_loss">condensa_loss() (condensa.opt.LC method)</a>
 </li>
@@ -311,7 +316,7 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/tensor.html#condensa.tensor.density">density() (in module condensa.tensor)</a>
 </li>
-      <li><a href="modules/delta.html#condensa.delta.dequantize">dequantize() (in module condensa.delta)</a>
+      <li><a href="modules/pi.html#condensa.delta.dequantize">dequantize() (in module condensa.delta)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -319,7 +324,7 @@
 <h2 id="E">E</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/util.html#condensa.util.EventTimer.elapsed_seconds">elapsed_seconds (condensa.util.EventTimer attribute)</a>
+      <li><a href="modules/util.html#condensa.util.EventTimer.elapsed_seconds">elapsed_seconds() (condensa.util.EventTimer property)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -337,6 +342,8 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/schemes.html#condensa.schemes.FilterPrune">FilterPrune (class in condensa.schemes)</a>
 </li>
+      <li><a href="modules/finetuner.html#condensa.finetune.FineTuner">FineTuner (class in condensa.finetune)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -353,9 +360,11 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/functional.html#condensa.functional.l2norm">l2norm() (in module condensa.functional)</a>
 </li>
+      <li><a href="modules/opt.html#condensa.opt.LC">LC (class in condensa.opt)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/opt.html#condensa.opt.LC">LC (class in condensa.opt)</a>
+      <li><a href="modules/util.html#condensa.util.loss">loss() (in module condensa.util)</a>
 </li>
       <li><a href="modules/util.html#condensa.util.loss_and_accuracy">loss_and_accuracy() (in module condensa.util)</a>
 </li>
@@ -439,8 +448,12 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/compressor.html#condensa.compressor.Compressor.run">run() (condensa.compressor.Compressor method)</a>
+      <li><a href="modules/compressor.html#condensa.Compressor.run">run() (condensa.Compressor method)</a>
+
+      <ul>
+        <li><a href="modules/finetuner.html#condensa.finetune.FineTuner.run">(condensa.finetune.FineTuner method)</a>
 </li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -453,7 +466,7 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/compressor.html#condensa.compressor.Compressor.statistics">statistics (condensa.compressor.Compressor attribute)</a>
+      <li><a href="modules/compressor.html#condensa.Compressor.statistics">statistics() (condensa.Compressor property)</a>
 </li>
       <li><a href="modules/schemes.html#condensa.schemes.StructurePrune">StructurePrune (class in condensa.schemes)</a>
 </li>
@@ -465,8 +478,6 @@
 <h2 id="T">T</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/thinner.html#condensa.thinner.Thinner">Thinner (class in condensa.thinner)</a>
-</li>
       <li><a href="modules/schemes.html#condensa.schemes.BlockPrune.threshold">threshold() (condensa.schemes.BlockPrune method)</a>
 
       <ul>
@@ -521,25 +532,16 @@
   
 
 
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-    
-
-  
-
-  <script type="text/javascript" src="_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

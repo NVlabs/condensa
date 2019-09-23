@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>condensa.pi &mdash; Condensa 0.5-beta documentation</title>
+  <title>Compression Operators &mdash; Condensa 0.5-beta documentation</title>
   
 
   
@@ -17,34 +17,38 @@
   
 
   
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-146596996-1"></script>
+        <script type="text/javascript" src="../_static/ga_tracker.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="condensa.delta" href="delta.html" />
-    <link rel="prev" title="condensa.schemes" href="schemes.html" /> 
-
-  
-  <script src="../_static/js/modernizr.min.js"></script>
-
+    <link rel="next" title="Model Compressor" href="compressor.html" />
+    <link rel="prev" title="Compression Schemes" href="schemes.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -58,7 +62,7 @@
             
             
               <div class="version">
-                0.5-beta
+                0.5
               </div>
             
           
@@ -89,18 +93,18 @@
 </ul>
 <p class="caption"><span class="caption-text">Module API Reference</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="compressor.html"><code class="docutils literal notranslate"><span class="pre">condensa.compressor</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="schemes.html"><code class="docutils literal notranslate"><span class="pre">condensa.schemes</span></code></a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">condensa.pi</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#module-condensa.pi">Compression Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="schemes.html">Compression Schemes</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Compression Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="compressor.html">Model Compressor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="opt.html">Optimizers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="finetuner.html">Model Fine-Tuner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tensor.html">Tensor Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functional.html">Aggregation Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="util.html">Utilities</a></li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="delta.html"><code class="docutils literal notranslate"><span class="pre">condensa.delta</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="tensor.html"><code class="docutils literal notranslate"><span class="pre">condensa.tensor</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="opt.html"><code class="docutils literal notranslate"><span class="pre">condensa.opt</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="functional.html"><code class="docutils literal notranslate"><span class="pre">condensa.functional</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="thinner.html"><code class="docutils literal notranslate"><span class="pre">condensa.thinner</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="util.html"><code class="docutils literal notranslate"><span class="pre">condensa.util</span></code></a></li>
+<p class="caption"><span class="caption-text">Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lc.html">L-C Optimizer Usage</a></li>
 </ul>
 
             
@@ -146,7 +150,7 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li><code class="docutils literal notranslate"><span class="pre">condensa.pi</span></code></li>
+      <li>Compression Operators</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -166,111 +170,102 @@
            <div itemprop="articleBody">
             
   <div class="section" id="module-condensa.pi">
-<span id="condensa-pi"></span><h1><a class="reference internal" href="#module-condensa.pi" title="condensa.pi"><code class="xref py py-mod docutils literal notranslate"><span class="pre">condensa.pi</span></code></a><a class="headerlink" href="#module-condensa.pi" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="module-condensa.pi">
-<span id="compression-operators"></span><h2>Compression Operators<a class="headerlink" href="#module-condensa.pi" title="Permalink to this headline">¶</a></h2>
+<span id="compression-operators"></span><h1>Compression Operators<a class="headerlink" href="#module-condensa.pi" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="condensa.pi.blockprune">
-<code class="descclassname">condensa.pi.</code><code class="descname">blockprune</code><span class="sig-paren">(</span><em>module</em>, <em>threshold</em>, <em>block_size</em>, <em>criteria</em>, <em>align=None</em>, <em>parameter='weight'</em><span class="sig-paren">)</span><a class="headerlink" href="#condensa.pi.blockprune" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">condensa.pi.</code><code class="sig-name descname">blockprune</code><span class="sig-paren">(</span><em class="sig-param">module</em>, <em class="sig-param">threshold</em>, <em class="sig-param">block_size</em>, <em class="sig-param">criteria</em>, <em class="sig-param">align=None</em>, <em class="sig-param">parameter='weight'</em><span class="sig-paren">)</span><a class="headerlink" href="#condensa.pi.blockprune" title="Permalink to this definition">¶</a></dt>
 <dd><p>Prunes blocks of module parameters based on magnitude (inplace).</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>module</strong> (<cite>torch.nn.Module</cite>) – PyTorch module.</li>
-<li><strong>threshold</strong> (<cite>float</cite>) – Magnitude threshold for pruning.</li>
-<li><strong>block_size</strong> (<cite>Tuple</cite>) – Block size for pruning.</li>
-<li><strong>criteria</strong> (<cite>condensa.functional</cite>) – Aggregation function for thresholding.</li>
-<li><strong>align</strong> (<cite>int</cite>) – Alignment of compressed parameters.</li>
-<li><strong>parameter</strong> (<em>str</em>) – Module parameter to prune (default: ‘weight’)</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>module</strong> (<cite>torch.nn.Module</cite>) – PyTorch module.</p></li>
+<li><p><strong>threshold</strong> (<cite>float</cite>) – Magnitude threshold for pruning.</p></li>
+<li><p><strong>block_size</strong> (<cite>Tuple</cite>) – Block size for pruning.</p></li>
+<li><p><strong>criteria</strong> (<cite>condensa.functional</cite>) – Aggregation function for thresholding.</p></li>
+<li><p><strong>align</strong> (<cite>int</cite>) – Alignment of compressed parameters.</p></li>
+<li><p><strong>parameter</strong> (<em>str</em>) – Module parameter to prune (default: ‘weight’)</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="condensa.pi.filter_prune">
-<code class="descclassname">condensa.pi.</code><code class="descname">filter_prune</code><span class="sig-paren">(</span><em>module</em>, <em>threshold</em>, <em>criteria</em>, <em>align=None</em>, <em>prune_bias=True</em><span class="sig-paren">)</span><a class="headerlink" href="#condensa.pi.filter_prune" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">condensa.pi.</code><code class="sig-name descname">filter_prune</code><span class="sig-paren">(</span><em class="sig-param">module</em>, <em class="sig-param">threshold</em>, <em class="sig-param">criteria</em>, <em class="sig-param">align=None</em>, <em class="sig-param">prune_bias=True</em><span class="sig-paren">)</span><a class="headerlink" href="#condensa.pi.filter_prune" title="Permalink to this definition">¶</a></dt>
 <dd><p>Prunes 3D blocks (filters) of module parameters based on magnitude (inplace).</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>module</strong> (<cite>torch.nn.Module</cite>) – PyTorch module.</li>
-<li><strong>threshold</strong> (<cite>float</cite>) – Magnitude threshold for pruning.</li>
-<li><strong>criteria</strong> (<cite>condensa.functional</cite>) – Aggregation function for thresholding.</li>
-<li><strong>align</strong> (<cite>int</cite>) – Alignment of compressed parameters.</li>
-<li><strong>prune_bias</strong> (<cite>bool</cite>) – Whether to prune corresponding biases.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>module</strong> (<cite>torch.nn.Module</cite>) – PyTorch module.</p></li>
+<li><p><strong>threshold</strong> (<cite>float</cite>) – Magnitude threshold for pruning.</p></li>
+<li><p><strong>criteria</strong> (<cite>condensa.functional</cite>) – Aggregation function for thresholding.</p></li>
+<li><p><strong>align</strong> (<cite>int</cite>) – Alignment of compressed parameters.</p></li>
+<li><p><strong>prune_bias</strong> (<cite>bool</cite>) – Whether to prune corresponding biases.</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="condensa.pi.neuron_prune">
-<code class="descclassname">condensa.pi.</code><code class="descname">neuron_prune</code><span class="sig-paren">(</span><em>module</em>, <em>threshold</em>, <em>criteria</em>, <em>align=None</em>, <em>prune_bias=True</em><span class="sig-paren">)</span><a class="headerlink" href="#condensa.pi.neuron_prune" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">condensa.pi.</code><code class="sig-name descname">neuron_prune</code><span class="sig-paren">(</span><em class="sig-param">module</em>, <em class="sig-param">threshold</em>, <em class="sig-param">criteria</em>, <em class="sig-param">align=None</em>, <em class="sig-param">prune_bias=True</em><span class="sig-paren">)</span><a class="headerlink" href="#condensa.pi.neuron_prune" title="Permalink to this definition">¶</a></dt>
 <dd><p>Prunes neurons based on magnitude (inplace).</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>module</strong> (<cite>torch.nn.Module</cite>) – PyTorch module.</li>
-<li><strong>threshold</strong> (<cite>float</cite>) – Magnitude threshold for pruning.</li>
-<li><strong>criteria</strong> (<cite>condensa.functional</cite>) – Aggregation function for thresholding.</li>
-<li><strong>align</strong> (<cite>int</cite>) – Alignment of compressed parameters.</li>
-<li><strong>prune_bias</strong> (<cite>bool</cite>) – Whether to prune corresponding biases.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>module</strong> (<cite>torch.nn.Module</cite>) – PyTorch module.</p></li>
+<li><p><strong>threshold</strong> (<cite>float</cite>) – Magnitude threshold for pruning.</p></li>
+<li><p><strong>criteria</strong> (<cite>condensa.functional</cite>) – Aggregation function for thresholding.</p></li>
+<li><p><strong>align</strong> (<cite>int</cite>) – Alignment of compressed parameters.</p></li>
+<li><p><strong>prune_bias</strong> (<cite>bool</cite>) – Whether to prune corresponding biases.</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="condensa.pi.prune">
-<code class="descclassname">condensa.pi.</code><code class="descname">prune</code><span class="sig-paren">(</span><em>module</em>, <em>threshold</em>, <em>parameter='weight'</em><span class="sig-paren">)</span><a class="headerlink" href="#condensa.pi.prune" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">condensa.pi.</code><code class="sig-name descname">prune</code><span class="sig-paren">(</span><em class="sig-param">module</em>, <em class="sig-param">threshold</em>, <em class="sig-param">parameter='weight'</em><span class="sig-paren">)</span><a class="headerlink" href="#condensa.pi.prune" title="Permalink to this definition">¶</a></dt>
 <dd><p>Prunes module parameters based on magnitude (inplace).</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>module</strong> (<cite>torch.nn.Module</cite>) – PyTorch module.</li>
-<li><strong>threshold</strong> (<cite>float</cite>) – Magnitude threshold for pruning.</li>
-<li><strong>parameter</strong> (<em>str</em>) – Module parameter to prune (default: ‘weight’)</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>module</strong> (<cite>torch.nn.Module</cite>) – PyTorch module.</p></li>
+<li><p><strong>threshold</strong> (<cite>float</cite>) – Magnitude threshold for pruning.</p></li>
+<li><p><strong>parameter</strong> (<em>str</em>) – Module parameter to prune (default: ‘weight’)</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="condensa.pi.quantize">
-<code class="descclassname">condensa.pi.</code><code class="descname">quantize</code><span class="sig-paren">(</span><em>module</em>, <em>dtype</em><span class="sig-paren">)</span><a class="headerlink" href="#condensa.pi.quantize" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">condensa.pi.</code><code class="sig-name descname">quantize</code><span class="sig-paren">(</span><em class="sig-param">module</em>, <em class="sig-param">dtype</em><span class="sig-paren">)</span><a class="headerlink" href="#condensa.pi.quantize" title="Permalink to this definition">¶</a></dt>
 <dd><p>Quantizes module to given data type (inplace).</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>module</strong> (<cite>torch.nn.Module</cite>) – PyTorch module.</li>
-<li><strong>dtype</strong> – Target data type.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>module</strong> (<cite>torch.nn.Module</cite>) – PyTorch module.</p></li>
+<li><p><strong>dtype</strong> – Target data type.</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
-</div>
+<span class="target" id="module-condensa.delta"></span><dl class="function">
+<dt id="condensa.delta.dequantize">
+<code class="sig-prename descclassname">condensa.delta.</code><code class="sig-name descname">dequantize</code><span class="sig-paren">(</span><em class="sig-param">module</em>, <em class="sig-param">dtype</em><span class="sig-paren">)</span><a class="headerlink" href="#condensa.delta.dequantize" title="Permalink to this definition">¶</a></dt>
+<dd><p>De-quantizes module to given data type (inplace).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>module</strong> (<cite>torch.nn.Module</cite>) – PyTorch module.</p></li>
+<li><p><strong>dtype</strong> – Target data type.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 </div>
 
 
@@ -281,10 +276,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="delta.html" class="btn btn-neutral float-right" title="condensa.delta" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="compressor.html" class="btn btn-neutral float-right" title="Model Compressor" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="schemes.html" class="btn btn-neutral" title="condensa.schemes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="schemes.html" class="btn btn-neutral float-left" title="Compression Schemes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -310,25 +305,16 @@
   
 
 
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-    
-
-  
-
-  <script type="text/javascript" src="../_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

@@ -1,5 +1,5 @@
-:mod:`condensa.schemes`
-=======================
+Compression Schemes
+===================
 .. automodule:: condensa.schemes
 
 Composition

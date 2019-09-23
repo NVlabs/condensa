@@ -1,10 +1,6 @@
-:mod:`condensa.compressor`
-==========================
-.. automodule:: condensa.compressor
-
 Model Compressor
-----------------
-.. autoclass:: Compressor
+================
+.. autoclass:: condensa.Compressor
    :members:
 
    .. automethod:: __init__

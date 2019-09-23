@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>condensa.util &mdash; Condensa 0.5-beta documentation</title>
+  <title>Utilities &mdash; Condensa 0.5-beta documentation</title>
   
 
   
@@ -17,33 +17,38 @@
   
 
   
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-146596996-1"></script>
+        <script type="text/javascript" src="../_static/ga_tracker.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="condensa.thinner" href="thinner.html" /> 
-
-  
-  <script src="../_static/js/modernizr.min.js"></script>
-
+    <link rel="next" title="L-C Optimizer Usage" href="lc.html" />
+    <link rel="prev" title="Aggregation Functions" href="functional.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -57,7 +62,7 @@
             
             
               <div class="version">
-                0.5-beta
+                0.5
               </div>
             
           
@@ -88,18 +93,18 @@
 </ul>
 <p class="caption"><span class="caption-text">Module API Reference</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="compressor.html"><code class="docutils literal notranslate"><span class="pre">condensa.compressor</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="schemes.html"><code class="docutils literal notranslate"><span class="pre">condensa.schemes</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="pi.html"><code class="docutils literal notranslate"><span class="pre">condensa.pi</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="delta.html"><code class="docutils literal notranslate"><span class="pre">condensa.delta</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="tensor.html"><code class="docutils literal notranslate"><span class="pre">condensa.tensor</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="opt.html"><code class="docutils literal notranslate"><span class="pre">condensa.opt</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="functional.html"><code class="docutils literal notranslate"><span class="pre">condensa.functional</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="thinner.html"><code class="docutils literal notranslate"><span class="pre">condensa.thinner</span></code></a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">condensa.util</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#module-condensa.util">Utility Functions and Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="schemes.html">Compression Schemes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pi.html">Compression Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="compressor.html">Model Compressor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="opt.html">Optimizers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="finetuner.html">Model Fine-Tuner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tensor.html">Tensor Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functional.html">Aggregation Functions</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Utilities</a></li>
 </ul>
-</li>
+<p class="caption"><span class="caption-text">Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lc.html">L-C Optimizer Usage</a></li>
 </ul>
 
             
@@ -145,7 +150,7 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li><code class="docutils literal notranslate"><span class="pre">condensa.util</span></code></li>
+      <li>Utilities</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -165,22 +170,26 @@
            <div itemprop="articleBody">
             
   <div class="section" id="module-condensa.util">
-<span id="condensa-util"></span><h1><a class="reference internal" href="#module-condensa.util" title="condensa.util"><code class="xref py py-mod docutils literal notranslate"><span class="pre">condensa.util</span></code></a><a class="headerlink" href="#module-condensa.util" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="module-condensa.util">
-<span id="utility-functions-and-classes"></span><h2>Utility Functions and Classes<a class="headerlink" href="#module-condensa.util" title="Permalink to this headline">¶</a></h2>
+<span id="utilities"></span><h1>Utilities<a class="headerlink" href="#module-condensa.util" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="condensa.util.AverageMeter">
+<em class="property">class </em><code class="sig-prename descclassname">condensa.util.</code><code class="sig-name descname">AverageMeter</code><a class="headerlink" href="#condensa.util.AverageMeter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes and stores the average and current value</p>
+</dd></dl>
+
 <dl class="class">
 <dt id="condensa.util.EventTimer">
-<em class="property">class </em><code class="descclassname">condensa.util.</code><code class="descname">EventTimer</code><a class="headerlink" href="#condensa.util.EventTimer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">condensa.util.</code><code class="sig-name descname">EventTimer</code><a class="headerlink" href="#condensa.util.EventTimer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Simple timer class.</p>
-<dl class="attribute">
+<dl class="method">
 <dt id="condensa.util.EventTimer.elapsed_seconds">
-<code class="descname">elapsed_seconds</code><a class="headerlink" href="#condensa.util.EventTimer.elapsed_seconds" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">elapsed_seconds</code><a class="headerlink" href="#condensa.util.EventTimer.elapsed_seconds" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns elapsed seconds.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="condensa.util.EventTimer.reset">
-<code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#condensa.util.EventTimer.reset" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#condensa.util.EventTimer.reset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reset timer.</p>
 </dd></dl>
 
@@ -188,144 +197,141 @@
 
 <dl class="function">
 <dt id="condensa.util.accuracy">
-<code class="descclassname">condensa.util.</code><code class="descname">accuracy</code><span class="sig-paren">(</span><em>output</em>, <em>target</em>, <em>topk=(1</em>, <em>)</em><span class="sig-paren">)</span><a class="headerlink" href="#condensa.util.accuracy" title="Permalink to this definition">¶</a></dt>
-<dd><p>Computes model accuracy for the specified values of k.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>output</strong> (<cite>torch.Tensor</cite>) – Predicted output batch</li>
-<li><strong>target</strong> (<cite>torch.Tensor</cite>) – Actual output batch</li>
-<li><strong>topk</strong> (<cite>Tuple</cite>) – Top-k value</li>
+<code class="sig-prename descclassname">condensa.util.</code><code class="sig-name descname">accuracy</code><span class="sig-paren">(</span><em class="sig-param">output</em>, <em class="sig-param">target</em>, <em class="sig-param">topk=(1</em>, <em class="sig-param">)</em><span class="sig-paren">)</span><a class="headerlink" href="#condensa.util.accuracy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the precision&#64;k for the specified values of k</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>output</strong> (<cite>torch.Tensor</cite>) – Predicted output batch</p></li>
+<li><p><strong>target</strong> (<cite>torch.Tensor</cite>) – Actual output batch</p></li>
+<li><p><strong>topk</strong> (<cite>Tuple</cite>) – Top-k value</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Model accuracy</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><cite>float</cite></p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Model accuracy</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><cite>float</cite></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="condensa.util.compressed_model_stats">
-<code class="descclassname">condensa.util.</code><code class="descname">compressed_model_stats</code><span class="sig-paren">(</span><em>w</em>, <em>wc</em><span class="sig-paren">)</span><a class="headerlink" href="#condensa.util.compressed_model_stats" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">condensa.util.</code><code class="sig-name descname">compressed_model_stats</code><span class="sig-paren">(</span><em class="sig-param">w</em>, <em class="sig-param">wc</em><span class="sig-paren">)</span><a class="headerlink" href="#condensa.util.compressed_model_stats" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrieve various statistics for compressed model.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>w</strong> (<cite>torch.nn.Module</cite>) – Original model</li>
-<li><strong>wc</strong> (<cite>torch.nn.Module</cite>) – Compressed model</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>w</strong> (<cite>torch.nn.Module</cite>) – Original model</p></li>
+<li><p><strong>wc</strong> (<cite>torch.nn.Module</cite>) – Compressed model</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Dictionary of compressed model statistics</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><cite>dict</cite></p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Dictionary of compressed model statistics</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><cite>dict</cite></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="condensa.util.is_leaf_node">
-<code class="descclassname">condensa.util.</code><code class="descname">is_leaf_node</code><span class="sig-paren">(</span><em>module</em><span class="sig-paren">)</span><a class="headerlink" href="#condensa.util.is_leaf_node" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">condensa.util.</code><code class="sig-name descname">is_leaf_node</code><span class="sig-paren">(</span><em class="sig-param">module</em><span class="sig-paren">)</span><a class="headerlink" href="#condensa.util.is_leaf_node" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks if given module is a leaf module.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>module</strong> (<cite>torch.nn.Module</cite>) – PyTorch module</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Boolean value representing whether module is a leaf.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><cite>bool</cite></td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>module</strong> (<cite>torch.nn.Module</cite>) – PyTorch module</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Boolean value representing whether module is a leaf.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><cite>bool</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="condensa.util.loss">
+<code class="sig-prename descclassname">condensa.util.</code><code class="sig-name descname">loss</code><span class="sig-paren">(</span><em class="sig-param">model</em>, <em class="sig-param">criterion</em>, <em class="sig-param">dataloader</em><span class="sig-paren">)</span><a class="headerlink" href="#condensa.util.loss" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes loss on given dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> (<cite>torch.nn.Module</cite>) – PyTorch model</p></li>
+<li><p><strong>loss_fn</strong> – Loss function</p></li>
+<li><p><strong>dataloader</strong> – Data loader to use</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Loss</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><cite>float</cite></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="condensa.util.loss_and_accuracy">
-<code class="descclassname">condensa.util.</code><code class="descname">loss_and_accuracy</code><span class="sig-paren">(</span><em>model</em>, <em>loss_fn</em>, <em>dataloader</em><span class="sig-paren">)</span><a class="headerlink" href="#condensa.util.loss_and_accuracy" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">condensa.util.</code><code class="sig-name descname">loss_and_accuracy</code><span class="sig-paren">(</span><em class="sig-param">model</em>, <em class="sig-param">criterion</em>, <em class="sig-param">dataloader</em><span class="sig-paren">)</span><a class="headerlink" href="#condensa.util.loss_and_accuracy" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes loss and accuracy of given model.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>model</strong> (<cite>torch.nn.Module</cite>) – PyTorch model</li>
-<li><strong>loss_fn</strong> – Loss function</li>
-<li><strong>dataloader</strong> – Data loader to use</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> (<cite>torch.nn.Module</cite>) – PyTorch model</p></li>
+<li><p><strong>criterion</strong> – Loss function</p></li>
+<li><p><strong>dataloader</strong> – Data loader to use</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Loss and accuracy</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Tuple(loss, accuracy)</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Loss and accuracy</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Tuple(loss, accuracy)</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="condensa.util.magnitude_threshold">
-<code class="descclassname">condensa.util.</code><code class="descname">magnitude_threshold</code><span class="sig-paren">(</span><em>module</em>, <em>density</em><span class="sig-paren">)</span><a class="headerlink" href="#condensa.util.magnitude_threshold" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">condensa.util.</code><code class="sig-name descname">magnitude_threshold</code><span class="sig-paren">(</span><em class="sig-param">module</em>, <em class="sig-param">density</em><span class="sig-paren">)</span><a class="headerlink" href="#condensa.util.magnitude_threshold" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes a magnitude-based threshold for given module.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>module</strong> (<cite>torch.nn.Module</cite>) – PyTorch module</li>
-<li><strong>density</strong> (<cite>float</cite>) – Desired ratio of nonzeros to total elements</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>module</strong> (<cite>torch.nn.Module</cite>) – PyTorch module</p></li>
+<li><p><strong>density</strong> (<cite>float</cite>) – Desired ratio of nonzeros to total elements</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Magnitude threshold</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><cite>float</cite></p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Magnitude threshold</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><cite>float</cite></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="condensa.util.pretrain">
-<code class="descclassname">condensa.util.</code><code class="descname">pretrain</code><span class="sig-paren">(</span><em>n_iter</em>, <em>model</em>, <em>trainset</em>, <em>criterion</em>, <em>optimizer</em>, <em>seed</em>, <em>batch_size</em><span class="sig-paren">)</span><a class="headerlink" href="#condensa.util.pretrain" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">condensa.util.</code><code class="sig-name descname">pretrain</code><span class="sig-paren">(</span><em class="sig-param">epochs</em>, <em class="sig-param">model</em>, <em class="sig-param">trainloader</em>, <em class="sig-param">criterion</em>, <em class="sig-param">optimizer</em><span class="sig-paren">)</span><a class="headerlink" href="#condensa.util.pretrain" title="Permalink to this definition">¶</a></dt>
 <dd><p>No-frills pre-training method.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>n_iter</strong> (<cite>int</cite>) – Number of iterations</li>
-<li><strong>model</strong> (<cite>torch.nn.Module</cite>) – PyTorch model</li>
-<li><strong>trainset</strong> – Training set</li>
-<li><strong>criterion</strong> – Loss criterion</li>
-<li><strong>optimizer</strong> – Optimizer to use</li>
-<li><strong>seed</strong> (<cite>int</cite>) – Seed value</li>
-<li><strong>batch_size</strong> (<cite>int</cite>) – Batch size to use for pre-training</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>epochs</strong> (<cite>int</cite>) – Number of epochs</p></li>
+<li><p><strong>model</strong> (<cite>torch.nn.Module</cite>) – PyTorch model</p></li>
+<li><p><strong>trainloader</strong> – Training dataloader</p></li>
+<li><p><strong>criterion</strong> – Loss criterion</p></li>
+<li><p><strong>optimizer</strong> – Optimizer to use</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
-</div>
 </div>
 
 
@@ -336,8 +342,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="lc.html" class="btn btn-neutral float-right" title="L-C Optimizer Usage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-        <a href="thinner.html" class="btn btn-neutral" title="condensa.thinner" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+        <a href="functional.html" class="btn btn-neutral float-left" title="Aggregation Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -363,25 +371,16 @@
   
 
 
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-    
-
-  
-
-  <script type="text/javascript" src="../_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

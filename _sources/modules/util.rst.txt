@@ -1,9 +1,5 @@
-:mod:`condensa.util`
-====================
-.. automodule:: condensa.util
-
-Utility Functions and Classes
------------------------------
+Utilities
+=========
 .. automodule:: condensa.util
    :members:
 

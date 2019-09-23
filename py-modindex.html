@@ -17,13 +17,22 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-146596996-1"></script>
+        <script type="text/javascript" src="_static/ga_tracker.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
@@ -31,21 +40,16 @@
  
 
 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -59,7 +63,7 @@
             
             
               <div class="version">
-                0.5-beta
+                0.5
               </div>
             
           
@@ -90,15 +94,18 @@
 </ul>
 <p class="caption"><span class="caption-text">Module API Reference</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="modules/compressor.html"><code class="docutils literal notranslate"><span class="pre">condensa.compressor</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/schemes.html"><code class="docutils literal notranslate"><span class="pre">condensa.schemes</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/pi.html"><code class="docutils literal notranslate"><span class="pre">condensa.pi</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/delta.html"><code class="docutils literal notranslate"><span class="pre">condensa.delta</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/tensor.html"><code class="docutils literal notranslate"><span class="pre">condensa.tensor</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/opt.html"><code class="docutils literal notranslate"><span class="pre">condensa.opt</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/functional.html"><code class="docutils literal notranslate"><span class="pre">condensa.functional</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/thinner.html"><code class="docutils literal notranslate"><span class="pre">condensa.thinner</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/util.html"><code class="docutils literal notranslate"><span class="pre">condensa.util</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/schemes.html">Compression Schemes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/pi.html">Compression Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/compressor.html">Model Compressor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/opt.html">Optimizers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/finetuner.html">Model Fine-Tuner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/tensor.html">Tensor Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/functional.html">Aggregation Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/util.html">Utilities</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules/lc.html">L-C Optimizer Usage</a></li>
 </ul>
 
             
@@ -179,12 +186,7 @@
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="modules/compressor.html#module-condensa.compressor"><code class="xref">condensa.compressor</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="modules/delta.html#module-condensa.delta"><code class="xref">condensa.delta</code></a></td><td>
+       <a href="modules/pi.html#module-condensa.delta"><code class="xref">condensa.delta</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
@@ -210,11 +212,6 @@
        <td></td>
        <td>&#160;&#160;&#160;
        <a href="modules/tensor.html#module-condensa.tensor"><code class="xref">condensa.tensor</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="modules/thinner.html#module-condensa.thinner"><code class="xref">condensa.thinner</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
@@ -251,25 +248,16 @@
   
 
 
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-    
-
-  
-
-  <script type="text/javascript" src="_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

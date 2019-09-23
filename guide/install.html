@@ -17,34 +17,38 @@
   
 
   
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-146596996-1"></script>
+        <script type="text/javascript" src="../_static/ga_tracker.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Usage" href="usage.html" />
     <link rel="prev" title="Condensa Documentation" href="../index.html" /> 
-
-  
-  <script src="../_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -58,7 +62,7 @@
             
             
               <div class="version">
-                0.5-beta
+                0.5
               </div>
             
           
@@ -85,7 +89,7 @@
               <p class="caption"><span class="caption-text">Getting Started</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#installation-via-pip">Installation via pip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#installation-from-source">Installation from Source</a></li>
 </ul>
 </li>
@@ -93,15 +97,18 @@
 </ul>
 <p class="caption"><span class="caption-text">Module API Reference</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../modules/compressor.html"><code class="docutils literal notranslate"><span class="pre">condensa.compressor</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../modules/schemes.html"><code class="docutils literal notranslate"><span class="pre">condensa.schemes</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../modules/pi.html"><code class="docutils literal notranslate"><span class="pre">condensa.pi</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../modules/delta.html"><code class="docutils literal notranslate"><span class="pre">condensa.delta</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../modules/tensor.html"><code class="docutils literal notranslate"><span class="pre">condensa.tensor</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../modules/opt.html"><code class="docutils literal notranslate"><span class="pre">condensa.opt</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../modules/functional.html"><code class="docutils literal notranslate"><span class="pre">condensa.functional</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../modules/thinner.html"><code class="docutils literal notranslate"><span class="pre">condensa.thinner</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../modules/util.html"><code class="docutils literal notranslate"><span class="pre">condensa.util</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/schemes.html">Compression Schemes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/pi.html">Compression Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/compressor.html">Model Compressor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/opt.html">Optimizers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/finetuner.html">Model Fine-Tuner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/tensor.html">Tensor Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/functional.html">Aggregation Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/util.html">Utilities</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules/lc.html">L-C Optimizer Usage</a></li>
 </ul>
 
             
@@ -168,13 +175,15 @@
             
   <div class="section" id="installation">
 <h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
-<p>Condensa has been tested with Python 3 and PyTorch 1.0+ on Linux.</p>
-<div class="section" id="installation-via-pip">
-<h2>Installation via pip<a class="headerlink" href="#installation-via-pip" title="Permalink to this headline">¶</a></h2>
-<p>Condensa can be installed from the PyPi repository using <cite>pip</cite>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install condensa
-</pre></div>
-</div>
+<div class="section" id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
+<p>Condensa requires:</p>
+<ul class="simple">
+<li><p>A working Linux installation (we use Ubuntu 18.04)</p></li>
+<li><p>NVIDIA drivers and CUDA 10+ for GPU support</p></li>
+<li><p>Python 3.5 or newer</p></li>
+<li><p>PyTorch 1.0 or newer</p></li>
+</ul>
 </div>
 <div class="section" id="installation-from-source">
 <h2>Installation from Source<a class="headerlink" href="#installation-from-source" title="Permalink to this headline">¶</a></h2>
@@ -204,7 +213,7 @@
         <a href="usage.html" class="btn btn-neutral float-right" title="Usage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../index.html" class="btn btn-neutral" title="Condensa Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../index.html" class="btn btn-neutral float-left" title="Condensa Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -230,25 +239,16 @@
   
 
 
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-    
-
-  
-
-  <script type="text/javascript" src="../_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

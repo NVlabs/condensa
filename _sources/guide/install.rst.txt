@@ -1,16 +1,15 @@
 Installation
 ============
 
-Condensa has been tested with Python 3 and PyTorch 1.0+ on Linux.
+Prerequisites
+-------------
 
-Installation via pip
----------------------
+Condensa requires:
 
-Condensa can be installed from the PyPi repository using `pip`:
-
-.. code-block:: bash
-
-   pip install condensa
+* A working Linux installation (we use Ubuntu 18.04)
+* NVIDIA drivers and CUDA 10+ for GPU support
+* Python 3.5 or newer
+* PyTorch 1.0 or newer
 
 Installation from Source
 ------------------------

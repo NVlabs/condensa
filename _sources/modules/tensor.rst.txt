@@ -1,9 +1,5 @@
-:mod:`condensa.tensor`
-======================
-.. automodule:: condensa.tensor
-
 Tensor Operators
-----------------
+================
 .. automodule:: condensa.tensor
    :members:
 

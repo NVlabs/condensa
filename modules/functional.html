@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>condensa.functional &mdash; Condensa 0.5-beta documentation</title>
+  <title>Aggregation Functions &mdash; Condensa 0.5-beta documentation</title>
   
 
   
@@ -17,34 +17,38 @@
   
 
   
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-146596996-1"></script>
+        <script type="text/javascript" src="../_static/ga_tracker.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="condensa.thinner" href="thinner.html" />
-    <link rel="prev" title="condensa.opt" href="opt.html" /> 
-
-  
-  <script src="../_static/js/modernizr.min.js"></script>
-
+    <link rel="next" title="Utilities" href="util.html" />
+    <link rel="prev" title="Tensor Operators" href="tensor.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -58,7 +62,7 @@
             
             
               <div class="version">
-                0.5-beta
+                0.5
               </div>
             
           
@@ -89,18 +93,18 @@
 </ul>
 <p class="caption"><span class="caption-text">Module API Reference</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="compressor.html"><code class="docutils literal notranslate"><span class="pre">condensa.compressor</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="schemes.html"><code class="docutils literal notranslate"><span class="pre">condensa.schemes</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="pi.html"><code class="docutils literal notranslate"><span class="pre">condensa.pi</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="delta.html"><code class="docutils literal notranslate"><span class="pre">condensa.delta</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="tensor.html"><code class="docutils literal notranslate"><span class="pre">condensa.tensor</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="opt.html"><code class="docutils literal notranslate"><span class="pre">condensa.opt</span></code></a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">condensa.functional</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#module-condensa.functional">Aggregation Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="schemes.html">Compression Schemes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pi.html">Compression Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="compressor.html">Model Compressor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="opt.html">Optimizers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="finetuner.html">Model Fine-Tuner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tensor.html">Tensor Operators</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Aggregation Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="util.html">Utilities</a></li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="thinner.html"><code class="docutils literal notranslate"><span class="pre">condensa.thinner</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="util.html"><code class="docutils literal notranslate"><span class="pre">condensa.util</span></code></a></li>
+<p class="caption"><span class="caption-text">Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lc.html">L-C Optimizer Usage</a></li>
 </ul>
 
             
@@ -146,7 +150,7 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li><code class="docutils literal notranslate"><span class="pre">condensa.functional</span></code></li>
+      <li>Aggregation Functions</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -166,120 +170,97 @@
            <div itemprop="articleBody">
             
   <div class="section" id="module-condensa.functional">
-<span id="condensa-functional"></span><h1><a class="reference internal" href="#module-condensa.functional" title="condensa.functional"><code class="xref py py-mod docutils literal notranslate"><span class="pre">condensa.functional</span></code></a><a class="headerlink" href="#module-condensa.functional" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="module-condensa.functional">
-<span id="aggregation-functions"></span><h2>Aggregation Functions<a class="headerlink" href="#module-condensa.functional" title="Permalink to this headline">¶</a></h2>
+<span id="aggregation-functions"></span><h1>Aggregation Functions<a class="headerlink" href="#module-condensa.functional" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="condensa.functional.l2norm">
-<code class="descclassname">condensa.functional.</code><code class="descname">l2norm</code><span class="sig-paren">(</span><em>tensor</em>, <em>dim</em>, <em>keepdim</em><span class="sig-paren">)</span><a class="headerlink" href="#condensa.functional.l2norm" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">condensa.functional.</code><code class="sig-name descname">l2norm</code><span class="sig-paren">(</span><em class="sig-param">tensor</em>, <em class="sig-param">dim</em>, <em class="sig-param">keepdim</em><span class="sig-paren">)</span><a class="headerlink" href="#condensa.functional.l2norm" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the l2-norm of elements in input tensor.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>tensor</strong> (<cite>torch.nn.Module</cite>) – PyTorch tensor.</li>
-<li><strong>dim</strong> (<cite>int</cite>) – Reduction dimension.</li>
-<li><strong>keepdim</strong> (<cite>bool</cite>) – Whether the output has <cite>dim</cite> retained.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tensor</strong> (<cite>torch.nn.Module</cite>) – PyTorch tensor.</p></li>
+<li><p><strong>dim</strong> (<cite>int</cite>) – Reduction dimension.</p></li>
+<li><p><strong>keepdim</strong> (<cite>bool</cite>) – Whether the output has <cite>dim</cite> retained.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">l2-norm of input tensor.</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>l2-norm of input tensor.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="condensa.functional.max">
-<code class="descclassname">condensa.functional.</code><code class="descname">max</code><span class="sig-paren">(</span><em>tensor</em>, <em>dim</em>, <em>keepdim</em><span class="sig-paren">)</span><a class="headerlink" href="#condensa.functional.max" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">condensa.functional.</code><code class="sig-name descname">max</code><span class="sig-paren">(</span><em class="sig-param">tensor</em>, <em class="sig-param">dim</em>, <em class="sig-param">keepdim</em><span class="sig-paren">)</span><a class="headerlink" href="#condensa.functional.max" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the maximum value of elements in input tensor.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>tensor</strong> (<cite>torch.nn.Module</cite>) – PyTorch tensor.</li>
-<li><strong>dim</strong> (<cite>int</cite>) – Reduction dimension.</li>
-<li><strong>keepdim</strong> (<cite>bool</cite>) – Whether the output has <cite>dim</cite> retained.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tensor</strong> (<cite>torch.nn.Module</cite>) – PyTorch tensor.</p></li>
+<li><p><strong>dim</strong> (<cite>int</cite>) – Reduction dimension.</p></li>
+<li><p><strong>keepdim</strong> (<cite>bool</cite>) – Whether the output has <cite>dim</cite> retained.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Max of input tensor.</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Max of input tensor.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="condensa.functional.mean">
-<code class="descclassname">condensa.functional.</code><code class="descname">mean</code><span class="sig-paren">(</span><em>tensor</em>, <em>dim</em>, <em>keepdim</em><span class="sig-paren">)</span><a class="headerlink" href="#condensa.functional.mean" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">condensa.functional.</code><code class="sig-name descname">mean</code><span class="sig-paren">(</span><em class="sig-param">tensor</em>, <em class="sig-param">dim</em>, <em class="sig-param">keepdim</em><span class="sig-paren">)</span><a class="headerlink" href="#condensa.functional.mean" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the mean value of elements in input tensor.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>tensor</strong> (<cite>torch.nn.Module</cite>) – PyTorch tensor.</li>
-<li><strong>dim</strong> (<cite>int</cite>) – Reduction dimension.</li>
-<li><strong>keepdim</strong> (<cite>bool</cite>) – Whether the output has <cite>dim</cite> retained.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tensor</strong> (<cite>torch.nn.Module</cite>) – PyTorch tensor.</p></li>
+<li><p><strong>dim</strong> (<cite>int</cite>) – Reduction dimension.</p></li>
+<li><p><strong>keepdim</strong> (<cite>bool</cite>) – Whether the output has <cite>dim</cite> retained.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Mean value of input tensor.</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Mean value of input tensor.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="condensa.functional.min">
-<code class="descclassname">condensa.functional.</code><code class="descname">min</code><span class="sig-paren">(</span><em>tensor</em>, <em>dim</em>, <em>keepdim</em><span class="sig-paren">)</span><a class="headerlink" href="#condensa.functional.min" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">condensa.functional.</code><code class="sig-name descname">min</code><span class="sig-paren">(</span><em class="sig-param">tensor</em>, <em class="sig-param">dim</em>, <em class="sig-param">keepdim</em><span class="sig-paren">)</span><a class="headerlink" href="#condensa.functional.min" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the minimum value of elements in input tensor.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>tensor</strong> (<cite>torch.nn.Module</cite>) – PyTorch tensor.</li>
-<li><strong>dim</strong> (<cite>int</cite>) – Reduction dimension.</li>
-<li><strong>keepdim</strong> (<cite>bool</cite>) – Whether the output has <cite>dim</cite> retained.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tensor</strong> (<cite>torch.nn.Module</cite>) – PyTorch tensor.</p></li>
+<li><p><strong>dim</strong> (<cite>int</cite>) – Reduction dimension.</p></li>
+<li><p><strong>keepdim</strong> (<cite>bool</cite>) – Whether the output has <cite>dim</cite> retained.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Min of input tensor.</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Min of input tensor.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="condensa.functional.sum">
-<code class="descclassname">condensa.functional.</code><code class="descname">sum</code><span class="sig-paren">(</span><em>tensor</em>, <em>dim</em>, <em>keepdim</em><span class="sig-paren">)</span><a class="headerlink" href="#condensa.functional.sum" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">condensa.functional.</code><code class="sig-name descname">sum</code><span class="sig-paren">(</span><em class="sig-param">tensor</em>, <em class="sig-param">dim</em>, <em class="sig-param">keepdim</em><span class="sig-paren">)</span><a class="headerlink" href="#condensa.functional.sum" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the sum of elements in input tensor.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>tensor</strong> (<cite>torch.nn.Module</cite>) – PyTorch tensor.</li>
-<li><strong>dim</strong> (<cite>int</cite>) – Reduction dimension.</li>
-<li><strong>keepdim</strong> (<cite>bool</cite>) – Whether the output has <cite>dim</cite> retained.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tensor</strong> (<cite>torch.nn.Module</cite>) – PyTorch tensor.</p></li>
+<li><p><strong>dim</strong> (<cite>int</cite>) – Reduction dimension.</p></li>
+<li><p><strong>keepdim</strong> (<cite>bool</cite>) – Whether the output has <cite>dim</cite> retained.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Sum of input tensor.</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Sum of input tensor.</p>
+</dd>
+</dl>
 </dd></dl>
 
-</div>
 </div>
 
 
@@ -290,10 +271,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="thinner.html" class="btn btn-neutral float-right" title="condensa.thinner" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="util.html" class="btn btn-neutral float-right" title="Utilities" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="opt.html" class="btn btn-neutral" title="condensa.opt" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="tensor.html" class="btn btn-neutral float-left" title="Tensor Operators" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -319,25 +300,16 @@
   
 
 
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-    
-
-  
-
-  <script type="text/javascript" src="../_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

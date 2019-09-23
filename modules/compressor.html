@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>condensa.compressor &mdash; Condensa 0.5-beta documentation</title>
+  <title>Model Compressor &mdash; Condensa 0.5-beta documentation</title>
   
 
   
@@ -17,34 +17,38 @@
   
 
   
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-146596996-1"></script>
+        <script type="text/javascript" src="../_static/ga_tracker.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="condensa.schemes" href="schemes.html" />
-    <link rel="prev" title="Usage" href="../guide/usage.html" /> 
-
-  
-  <script src="../_static/js/modernizr.min.js"></script>
-
+    <link rel="next" title="Optimizers" href="opt.html" />
+    <link rel="prev" title="Compression Operators" href="pi.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -58,7 +62,7 @@
             
             
               <div class="version">
-                0.5-beta
+                0.5
               </div>
             
           
@@ -89,18 +93,18 @@
 </ul>
 <p class="caption"><span class="caption-text">Module API Reference</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">condensa.compressor</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#model-compressor">Model Compressor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="schemes.html">Compression Schemes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pi.html">Compression Operators</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Model Compressor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="opt.html">Optimizers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="finetuner.html">Model Fine-Tuner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tensor.html">Tensor Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functional.html">Aggregation Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="util.html">Utilities</a></li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="schemes.html"><code class="docutils literal notranslate"><span class="pre">condensa.schemes</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="pi.html"><code class="docutils literal notranslate"><span class="pre">condensa.pi</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="delta.html"><code class="docutils literal notranslate"><span class="pre">condensa.delta</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="tensor.html"><code class="docutils literal notranslate"><span class="pre">condensa.tensor</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="opt.html"><code class="docutils literal notranslate"><span class="pre">condensa.opt</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="functional.html"><code class="docutils literal notranslate"><span class="pre">condensa.functional</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="thinner.html"><code class="docutils literal notranslate"><span class="pre">condensa.thinner</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="util.html"><code class="docutils literal notranslate"><span class="pre">condensa.util</span></code></a></li>
+<p class="caption"><span class="caption-text">Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lc.html">L-C Optimizer Usage</a></li>
 </ul>
 
             
@@ -146,7 +150,7 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li><code class="docutils literal notranslate"><span class="pre">condensa.compressor</span></code></li>
+      <li>Model Compressor</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -165,72 +169,61 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-condensa.compressor">
-<span id="condensa-compressor"></span><h1><a class="reference internal" href="#module-condensa.compressor" title="condensa.compressor"><code class="xref py py-mod docutils literal notranslate"><span class="pre">condensa.compressor</span></code></a><a class="headerlink" href="#module-condensa.compressor" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="model-compressor">
-<h2>Model Compressor<a class="headerlink" href="#model-compressor" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="model-compressor">
+<h1>Model Compressor<a class="headerlink" href="#model-compressor" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
-<dt id="condensa.compressor.Compressor">
-<em class="property">class </em><code class="descclassname">condensa.compressor.</code><code class="descname">Compressor</code><span class="sig-paren">(</span><em>opt</em>, <em>scheme</em>, <em>model</em>, <em>trainset</em>, <em>testset</em>, <em>valset</em>, <em>loss_fn</em><span class="sig-paren">)</span><a class="headerlink" href="#condensa.compressor.Compressor" title="Permalink to this definition">¶</a></dt>
+<dt id="condensa.Compressor">
+<em class="property">class </em><code class="sig-prename descclassname">condensa.</code><code class="sig-name descname">Compressor</code><span class="sig-paren">(</span><em class="sig-param">opt</em>, <em class="sig-param">scheme</em>, <em class="sig-param">model</em>, <em class="sig-param">trainloader</em>, <em class="sig-param">testloader</em>, <em class="sig-param">valloader</em>, <em class="sig-param">criterion</em><span class="sig-paren">)</span><a class="headerlink" href="#condensa.Compressor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Condensa model compressor class.</p>
 <dl class="method">
-<dt id="condensa.compressor.Compressor.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>opt</em>, <em>scheme</em>, <em>model</em>, <em>trainset</em>, <em>testset</em>, <em>valset</em>, <em>loss_fn</em><span class="sig-paren">)</span><a class="headerlink" href="#condensa.compressor.Compressor.__init__" title="Permalink to this definition">¶</a></dt>
+<dt id="condensa.Compressor.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">opt</em>, <em class="sig-param">scheme</em>, <em class="sig-param">model</em>, <em class="sig-param">trainloader</em>, <em class="sig-param">testloader</em>, <em class="sig-param">valloader</em>, <em class="sig-param">criterion</em><span class="sig-paren">)</span><a class="headerlink" href="#condensa.Compressor.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a <cite>Compressor</cite> instance.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>opt</strong> (<cite>condensa.Optimizer</cite>) – Optimizer.</li>
-<li><strong>scheme</strong> – Compression scheme (class).</li>
-<li><strong>model</strong> (<cite>torch.nn.Module</cite>) – PyTorch model.</li>
-<li><strong>trainset</strong> – Training dataset.</li>
-<li><strong>testset</strong> – Test dataset.</li>
-<li><strong>valset</strong> – Validation dataset.</li>
-<li><strong>loss_fn</strong> – Loss criterion.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>opt</strong> (<cite>condensa.Optimizer</cite>) – Optimizer.</p></li>
+<li><p><strong>scheme</strong> – Compression scheme (class).</p></li>
+<li><p><strong>model</strong> (<cite>torch.nn.Module</cite>) – PyTorch model.</p></li>
+<li><p><strong>trainloader</strong> – Training dataloader.</p></li>
+<li><p><strong>testloader</strong> – Test dataloader.</p></li>
+<li><p><strong>valloader</strong> – Validation dataloader.</p></li>
+<li><p><strong>criterion</strong> – Loss criterion.</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
-<dt id="condensa.compressor.Compressor.run">
-<code class="descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#condensa.compressor.Compressor.run" title="Permalink to this definition">¶</a></dt>
+<dt id="condensa.Compressor.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#condensa.Compressor.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>Executes model compressor.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Compressed model.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><cite>torch.nn.Module</cite></td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Compressed model.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><cite>torch.nn.Module</cite></p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="condensa.compressor.Compressor.statistics">
-<code class="descname">statistics</code><a class="headerlink" href="#condensa.compressor.Compressor.statistics" title="Permalink to this definition">¶</a></dt>
+<dl class="method">
+<dt id="condensa.Compressor.statistics">
+<em class="property">property </em><code class="sig-name descname">statistics</code><a class="headerlink" href="#condensa.Compressor.statistics" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrieves compressed model statistics.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Model statistics.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><cite>dict</cite></td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Model statistics.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><cite>dict</cite></p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
 
-</div>
 </div>
 
 
@@ -241,10 +234,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="schemes.html" class="btn btn-neutral float-right" title="condensa.schemes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="opt.html" class="btn btn-neutral float-right" title="Optimizers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../guide/usage.html" class="btn btn-neutral" title="Usage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="pi.html" class="btn btn-neutral float-left" title="Compression Operators" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -270,25 +263,16 @@
   
 
 
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-    
-
-  
-
-  <script type="text/javascript" src="../_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>
