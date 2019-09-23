@@ -19,8 +19,6 @@ sys.setrecursionlimit(1500)
 
 import condensa
 
-import sphinx_rtd_theme
-
 # -- Project information -----------------------------------------------------
 
 project = u'Condensa'
