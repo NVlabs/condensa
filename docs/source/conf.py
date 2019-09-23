@@ -173,3 +173,11 @@ texinfo_documents = [
 # -- Extension configuration -------------------------------------------------
 
 #autoclass_content = 'both'
+
+def setup(app):
+    """
+    Insert Google Analytics tracker.
+    Based on this Stackoverflow suggestion: https://stackoverflow.com/a/41885884
+    """
+    app.add_javascript("https://www.googletagmanager.com/gtag/js?id=UA-146596996-1")
+    app.add_javascript("ga_tracker.js")
