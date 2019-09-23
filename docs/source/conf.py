@@ -28,7 +28,7 @@ author = u'Saurav Muralidharan'
 # The short X.Y version
 version = '0.5'
 # The full version, including alpha/beta/rc tags
-release = condensa.__version__
+release = '0.5-beta'
 
 
 # -- General configuration ---------------------------------------------------
