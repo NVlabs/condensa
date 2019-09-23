@@ -14,26 +14,15 @@
 
 import os
 from setuptools import setup
-import torch
 
 cwd = os.path.dirname(os.path.abspath(__file__))
 version = '0.5-beta'
-
-def precheck():
-  TORCH_MAJOR = int(torch.__version__.split('.')[0])
-
-  if TORCH_MAJOR < 1:
-    raise RuntimeError('Condensa requires PyTorch 1.0 or newer.\n')
-
-  if not torch.cuda.is_available():
-    print('[Condensa] Warning: Torch did not find GPUs on this system.\n')
 
 def build_deps():
   version_path = os.path.join(cwd, 'condensa', 'version.py')
   with open(version_path, 'w') as f:
     f.write("__version__ = '{}'\n".format(version))
 
-precheck()
 build_deps()
 
 setup(name='condensa',
