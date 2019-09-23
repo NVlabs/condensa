@@ -17,9 +17,6 @@ import sys
 sys.path.insert(0, os.path.abspath('../..'))
 sys.setrecursionlimit(1500)
 
-autodoc_mock_imports = ["torch", "tqdm"]
-import condensa
-
 # -- Project information -----------------------------------------------------
 
 project = u'Condensa'
@@ -45,10 +42,14 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.mathjax',
     'sphinx.ext.ifconfig',
-    'sphinx.ext.napoleon'
+    'sphinx.ext.napoleon',
+    'autoapi.extension'
 ]
 
 napoleon_use_ivar = True
+
+autoapi_dirs = ['../../condensa']
+autoapi_generate_api_docs = False
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
