@@ -17,6 +17,8 @@ import sys
 sys.path.insert(0, os.path.abspath('../..'))
 sys.setrecursionlimit(1500)
 
+import condensa
+
 import sphinx_rtd_theme
 
 # -- Project information -----------------------------------------------------
