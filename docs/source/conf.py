@@ -17,6 +17,7 @@ import sys
 sys.path.insert(0, os.path.abspath('../..'))
 sys.setrecursionlimit(1500)
 
+autodoc_mock_imports = ["torch", "tqdm"]
 import condensa
 
 # -- Project information -----------------------------------------------------
