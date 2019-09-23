@@ -25,16 +25,10 @@ project = u'Condensa'
 copyright = u'2019, NVIDIA Corporation'
 author = u'Saurav Muralidharan'
 
-try:
-  import condensa
-except ImportError:
-  print('Please install Condensa to generate docs')
-  quit()
-
 # The short X.Y version
-version = condensa.__version__
+version = '0.5'
 # The full version, including alpha/beta/rc tags
-release = condensa.__version__
+release = '0.5-beta'
 
 
 # -- General configuration ---------------------------------------------------
