@@ -70,8 +70,18 @@ def test_neuron_prune():
     z = torch.index_select(fc.bias.data, 0, zero_indices)
     assert (z == 0.).all()
 
-def test_block_prune():
-    pass
+def test_block_prune(blocksize=(10,10)):
+    fc = torch.nn.Linear(100, 100, bias=False)
+
+    criteria = F.l2norm
+    scheme = schemes.BlockPrune(0.5, criteria=criteria, block_size=blocksize)
+    threshold = scheme.threshold(fc)
+    scheme.pi(fc)
+
+    # Check against threshold
+    agg = T.aggregate(fc.weight.data, blocksize, criteria).view(-1)
+    nzs = torch.index_select(agg, 0, agg.nonzero().view(-1))
+    assert (nzs >= threshold).all()
 
 if __name__ == '__main__':
     test_prune()
