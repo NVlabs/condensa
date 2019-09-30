@@ -14,6 +14,7 @@
 
 import os
 from setuptools import setup
+from setuptools import find_packages
 
 cwd = os.path.dirname(os.path.abspath(__file__))
 version = '0.5-beta'
@@ -25,12 +26,20 @@ def build_deps():
 
 build_deps()
 
-setup(name='condensa',
+with open(os.path.join(cwd, 'README.md'), encoding='utf-8') as f:
+    long_description = f.read()
+
+install_requires = ['numpy',
+                    'torch>=1.0.0']
+
+setup(name='Condensa',
       version=version,
       description='Condensa Programmable Model Compression Framework',
+      long_description=long_description,
+      long_description_content_type='text/markdown',
       url='https://nvlabs.github.io/condensa/',
       author='Saurav Muralidharan',
       author_email='sauravm@nvidia.com',
       license='Apache License 2.0',
-      packages=['condensa'],
-      zip_safe=False)
+      install_requires=install_requires,
+      packages=find_packages())
