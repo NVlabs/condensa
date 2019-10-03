@@ -125,7 +125,8 @@ if __name__ == '__main__':
                   trainloader=trainloader,
                   testloader=testloader,
                   valloader=valloader,
-                  debugging_flags={'print_accuracies':True})
+                  debugging_flags={'custom_model_statistics':
+                                    condensa.util.cnn_statistics})
     nparams_wft = torch.nn.utils.parameters_to_vector(
         w_ft.parameters()).view(-1).nonzero().numel()
     print('#Nonzero parameters: before [{}], after [{}]'.format(

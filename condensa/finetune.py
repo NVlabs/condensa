@@ -94,34 +94,23 @@ class FineTuner(object):
             cudnn.benchmark = True
             self.w = self.w.cuda()
 
-        _print_acc = debugging_flags['print_accuracies']\
-                     if 'print_accuracies' in debugging_flags\
-                     else False
+        _model_stat_fn = debugging_flags['custom_model_statistics']\
+                   if 'custom_model_statistics' in debugging_flags\
+                   else util.empty_stat_fn
 
-        if _print_acc:
-            if validate:
-                val_loss, val_top1 = util.loss_and_accuracy(
-                    self.w, criterion, valloader)
-                logging.info(
-                    '[Condensa:FineTuner] Original model val_loss: %.2f, '
-                    'val_E_top1: %.2f' % (val_loss, val_top1))
-            if test:
-                test_loss, test_top1 = util.loss_and_accuracy(
-                    self.w, criterion, testloader)
-                logging.info(
-                    '[Condensa:FineTuner] Original model test_loss: %.2f, '
-                    'test_E_top1: %.2f' % (test_loss, test_top1))
-        else:
-            if validate:
-                val_loss = util.loss(self.w, criterion, valloader)
-                logging.info(
-                    '[Condensa:FineTuner] Original model val_loss: %.2f' %
-                    (val_loss))
-            if test:
-                test_loss = util.loss(self.w, criterion, testloader)
-                logging.info(
-                    '[Condensa:FineTuner] Original model test_loss: %.2f' %
-                    (test_loss))
+        if validate:
+            val_loss, val_stats = _model_stat_fn(self.w, criterion, valloader)
+            logging.info(
+                '[Condensa:FineTuner] Original model val_loss: {:.2f}, {}'
+                .format(val_loss,
+                ', '.join(['{}:{}'.format(k, v) for k,v in val_stats.items()])))
+        if test:
+            test_loss, test_stats = _model_stat_fn(
+                self.w, criterion, testloader)
+            logging.info(
+                '[Condensa:FineTuner] Original model test_loss: {:.2f}, {} '
+                .format(test_loss,
+                ', '.join(['{}:{}'.format(k, v) for k,v in test_stats.items()])))
 
         l_alpha = np.exp((np.log(lr_end) - np.log(lr)) / float(epochs))
         optimizer = torch.optim.SGD(self.w.parameters(),
@@ -157,30 +146,20 @@ class FineTuner(object):
             # Switch to eval mode
             self.w.eval()
 
-            if _print_acc:
-                if validate:
-                    val_loss, val_top1 = util.loss_and_accuracy(
-                        self.w, criterion, valloader)
-                    logging.info(
-                        '[Condensa:FineTuner] Epoch [%d], VAL loss: %.2f, '
-                        'top1: %.2f' % (epoch, val_loss, val_top1))
-                if test:
-                    test_loss, test_top1 = util.loss_and_accuracy(
-                        self.w, criterion, testloader)
-                    logging.info(
-                        '[Condensa:FineTuner] Epoch [%d], TEST loss: %.2f, '
-                        'top1: %.2f' % (epoch, test_loss, test_top1))
-            else:
-                if validate:
-                    val_loss = util.loss(self.w, criterion, valloader)
-                    logging.info(
-                        '[Condensa:FineTuner] Epoch [%d], VAL loss: %.2f' %
-                        (epoch, val_loss))
-                if test:
-                    test_loss = util.loss(self.w, criterion, testloader)
-                    logging.info(
-                        '[Condensa:FineTuner] Epoch [%d], TEST loss: %.2f' %
-                        (epoch, test_loss))
+            if validate:
+                val_loss, val_stats = _model_stat_fn(
+                    self.w, criterion, valloader)
+                logging.info(
+                    '[Condensa:FineTuner] Epoch [{}], VAL loss: {:.2f}, {}'
+                    .format(epoch, val_loss,
+                    ', '.join(['{}:{}'.format(k, v) for k,v in val_stats.items()])))
+            if test:
+                test_loss, test_stats = _model_stat_fn(
+                    self.w, criterion, testloader)
+                logging.info(
+                    '[Condensa:FineTuner] Epoch [{}], TEST loss: {:.2f}, {}'
+                    .format(epoch, test_loss,
+                    ', '.join(['{}:{}'.format(k, v) for k,v in test_stats.items()])))
 
             if validate:
                 if val_loss < best_loss:

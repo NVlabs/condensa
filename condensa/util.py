@@ -74,6 +74,9 @@ def magnitude_threshold(module, density):
     params = torch.nn.utils.parameters_to_vector(module.parameters())
     return T.threshold(params, density)
 
+def empty_stat_fn(model, criterion, dataloader):
+    return (loss(model, criterion, dataloader), {})
+
 def accuracy(output, target, topk=(1, )):
     """
     Computes the precision@k for the specified values of k
@@ -131,16 +134,16 @@ def loss(model, criterion, dataloader):
             losses.update(to_python_float(loss.data), input.size(0))
     return losses.avg
 
-def loss_and_accuracy(model, criterion, dataloader):
+def cnn_statistics(model, criterion, dataloader):
     """
-    Computes loss and accuracy of given model.
+    Computes accuracy of given CNN model.
   
     :param model: PyTorch model
     :type model: `torch.nn.Module`
     :param criterion: Loss function
     :param dataloader: Data loader to use
-    :return: Loss and accuracy
-    :rtype: Tuple(loss, accuracy)
+    :return: Top-1 and Top-5 accuracies
+    :rtype: Tuple(top1, top5)
     """
     losses = AverageMeter()
     top1 = AverageMeter()
@@ -166,7 +169,9 @@ def loss_and_accuracy(model, criterion, dataloader):
             prec1, prec5 = accuracy(output.data, target, topk=(1, 5))
             losses.update(to_python_float(loss.data), input.size(0))
             top1.update(to_python_float(prec1), input.size(0))
-    return (losses.avg, top1.avg)
+            top5.update(to_python_float(prec5), input.size(0))
+    return (losses.avg,
+            {'top1': top1.avg, 'top5': top5.avg})
 
 def compressed_model_stats(w, wc):
     """

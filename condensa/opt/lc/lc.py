@@ -132,35 +132,6 @@ class LC(object):
         self.distributed = distributed
         self.debugging_flags = debugging_flags
 
-    def condensa_loss(self, mu, w, theta, lm):
-        """
-        Computes L-C reconstruction loss.
-    
-        :param mu: LC `mu` hyper-parameter value.
-        :type mu: float
-        :param w: Input model.
-        :type w: torch.nn.Module
-        :param theta: Compressed model.
-        :type theta: torch.nn.Module
-        :param lm: Lagrange multiplier.
-        :type lm: torch.nn.Module
-        """
-        w.eval()
-        loss = 0.
-        with torch.no_grad():
-            for w_m, theta_m, lm_m in zip(w.modules(), theta.modules(),
-                                          lm.modules()):
-                if hasattr(theta_m, 'condense'):
-                    for pname in theta_m.condense:
-                        w_p = getattr(w_m, pname).detach()
-                        theta_p = getattr(theta_m, pname).data
-                        lm_p = getattr(lm_m, pname).data
-                        compression_loss = w_p - theta_p
-                        qp_term = (compression_loss * compression_loss).sum()
-                        al_term = (compression_loss * lm_p).sum()
-                        loss += 0.5 * mu * qp_term - al_term
-        return loss
-
     def zero_(self, model):
         """
         Zeroes out model parameters.
@@ -187,14 +158,13 @@ class LC(object):
         :param valloader: Validation dataloader.
         :param loss_fn: Loss criterion.
         """
-
         statistics = {}
         # Save engine configuration
         statistics.update(self._engine_config)
 
-        _print_acc = self.debugging_flags['print_accuracies']\
-                     if 'print_accuracies' in self.debugging_flags\
-                     else False
+        _model_stat_fn = self.debugging_flags['custom_model_statistics']\
+                   if 'custom_model_statistics' in self.debugging_flags\
+                   else util.empty_stat_fn
         _disable_train_stats = self.debugging_flags['disable_train_stats']\
                      if 'disable_train_stats' in self.debugging_flags\
                      else False
@@ -238,26 +208,21 @@ class LC(object):
                                      **self.l_optimizer_params)
         optimizer.reset_state()
 
-        if _print_acc:
-            if not _disable_train_stats:
-                w_train_loss, w_train_acc = util.loss_and_accuracy(w, loss_fn, trainloader)
-                logger.info('[Condensa] w TRAIN\tloss={:.5f}, acc={:.4f}'.format(w_train_loss, w_train_acc))
-            if validate:
-                w_val_loss, w_val_acc = util.loss_and_accuracy(w, loss_fn, valloader)
-                logger.info('[Condensa] w VAL\tloss={:.5f}, acc={:4f}'.format(w_val_loss, w_val_acc))
-            if test:
-                w_test_loss, w_test_acc = util.loss_and_accuracy(w, loss_fn, testloader)
-                logger.info('[Condensa] w TEST\tloss={:.5f}, acc={:4f}'.format(w_test_loss, w_test_acc))
-        else:
-            if not _disable_train_stats:
-                w_train_loss = util.loss(w, loss_fn, trainloader)
-                logger.info('[Condensa] w TRAIN\tloss={:.5f}'.format(w_train_loss))
-            if validate:
-                w_val_loss = util.loss(w, loss_fn, valloader)
-                logger.info('[Condensa] w VAL\tloss={:.5f}'.format(w_val_loss))
-            if test:
-                w_test_loss = util.loss(w, loss_fn, testloader)
-                logger.info('[Condensa] w TEST\tloss={:.5f}'.format(w_test_loss))
+        if not _disable_train_stats:
+            w_train_loss, w_train_stats = _model_stat_fn(w, loss_fn, trainloader)
+            logger.info('[Condensa] w TRAIN\tloss={:.5f}, {}'
+                .format(w_train_loss,
+                ', '.join(['{}:{}'.format(k, v) for k,v in w_train_stats.items()])))
+        if validate:
+            w_val_loss, w_val_stats = _model_stat_fn(w, loss_fn, valloader)
+            logger.info('[Condensa] w VAL\tloss={:.5f}, {}'
+                .format(w_val_loss,
+                ', '.join(['{}:{}'.format(k, v) for k,v in w_val_stats.items()])))
+        if test:
+            w_test_loss, w_test_stats = _model_stat_fn(w, loss_fn, testloader)
+            logger.info('[Condensa] w TEST\tloss={:.5f}, {}'
+                .format(w_test_loss,
+                ', '.join(['{}:{}'.format(k, v) for k,v in w_test_stats.items()])))
 
         best_loss = sys.float_info.max
         train_losses = []
@@ -359,60 +324,42 @@ class LC(object):
 
             pi(theta)
 
-            if _print_acc:
-                if not _disable_train_stats:
-                    nested_train_loss, nested_train_acc = util.loss_and_accuracy(
-                        theta, loss_fn, trainloader)
-                    logger.info(
-                        '[Condensa] Nested (theta) TRAIN\tloss={:.5f}, acc={:.4f}'.
-                        format(nested_train_loss, nested_train_acc))
-                if validate:
-                    nested_val_loss, nested_val_acc = util.loss_and_accuracy(
-                        theta, loss_fn, valloader)
-                    logger.info(
-                        '[Condensa] Nested (theta) VAL\tloss={:.5f}, acc={:.4f}'.
-                        format(nested_val_loss, nested_val_acc))
-                if test:
-                    nested_test_loss, nested_test_acc = util.loss_and_accuracy(
-                        theta, loss_fn, testloader)
-                    logger.info(
-                        '[Condensa] Nested (theta) TEST\tloss={:.5f}, acc={:.4f}'.
-                        format(nested_test_loss, nested_test_acc))
-            else:
-                if not _disable_train_stats:
-                    nested_train_loss = util.loss(theta, loss_fn, trainloader)
-                    logger.info(
-                        '[Condensa] Nested (theta) TRAIN\tloss={:.5f}'.
-                        format(nested_train_loss))
-                if validate:
-                    nested_val_loss = util.loss(theta, loss_fn, valloader)
-                    logger.info(
-                        '[Condensa] Nested (theta) VAL\tloss={:.5f}'.
-                        format(nested_val_loss))
-                if test:
-                    nested_test_loss = util.loss(theta, loss_fn, testloader)
-                    logger.info(
-                        '[Condensa] Nested (theta) TEST\tloss={:.5f}'.
-                        format(nested_test_loss))
             if not _disable_train_stats:
+                nested_train_loss, nested_train_stats = _model_stat_fn(theta, loss_fn, trainloader)
                 train_losses.append(nested_train_loss)
-            if test: test_losses.append(nested_test_loss)
-            if validate: val_losses.append(nested_val_loss)
+                logger.info(
+                    '[Condensa] Nested (theta) TRAIN\tloss={:.5f}, {}'
+                    .format(nested_train_loss,
+                    ', '.join(['{}:{}'.format(k, v) for k,v in nested_train_stats.items()])))
+            if validate:
+                nested_val_loss, nested_val_stats = _model_stat_fn(theta, loss_fn, valloader)
+                val_losses.append(nested_val_loss)
+                logger.info(
+                    '[Condensa] Nested (theta) VAL\tloss={:.5f}, {}'
+                    .format(nested_val_loss,
+                    ', '.join(['{}:{}'.format(k, v) for k,v in nested_val_stats.items()])))
+            if test:
+                nested_test_loss, nested_test_stats = _model_stat_fn(theta, loss_fn, testloader)
+                test_losses.append(nested_test_loss)
+                logger.info(
+                    '[Condensa] Nested (theta) TEST\tloss={:.5f}, {}'
+                    .format(nested_test_loss,
+                    ', '.join(['{}:{}'.format(k, v) for k,v in nested_test_stats.items()])))
 
             if validate:
                 if nested_val_loss < best_loss:
-                    logger.info('[Condensa] SAVING MODEL based on VAL')
+                    logger.info('[Condensa] Saving model based on VAL')
                     best_loss = nested_val_loss
                     # Deep-copy required here to preserve dtypes
                     best_model = deepcopy(theta)
             elif test:
                 if nested_test_loss < best_loss:
-                    logger.info('[Condensa] SAVING MODEL based on TEST')
+                    logger.info('[Condensa] Saving model based on TEST')
                     best_loss = nested_test_loss
                     # Deep-copy required here to preserve dtypes
                     best_model = deepcopy(theta)
             else:
-                logger.info('[Condensa] SAVING MODEL based on most recent')
+                logger.info('[Condensa] Saving model based on most recent')
                 best_model = deepcopy(theta)
 
             # theta <- delta(theta)

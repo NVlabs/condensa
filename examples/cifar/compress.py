@@ -182,7 +182,8 @@ if __name__ == '__main__':
                          mu_init=args.mu_init,
                          mu_multiplier=args.mu_multiplier,
                          mu_cap=args.mu_cap,
-                         debugging_flags={'print_accuracies': True})
+                         debugging_flags={'custom_model_statistics':
+                                           condensa.util.cnn_statistics})
 
     criterion = nn.CrossEntropyLoss().cuda()
     # Compress model using Condensa
