@@ -17,8 +17,8 @@ import torch
 
 import condensa.tensor as T
 
-def test_apply_mask():
-    a = torch.randn(20).cuda()
+def test_apply_mask(device):
+    a = torch.randn(20).to(device)
     threshold = T.threshold(a, 0.3)
     mask = T.simple_mask(a, threshold)
     T.apply_mask_inplace(a, mask)
@@ -27,4 +27,6 @@ def test_apply_mask():
         assert a[i] == 0. or abs(a[i]) >= threshold
 
 if __name__ == '__main__':
-    test_apply_mask()
+    test_apply_mask('cpu')
+    if torch.cuda.is_available():
+        test_apply_mask('cuda:0')

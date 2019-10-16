@@ -17,22 +17,22 @@ import torch
 
 import condensa.tensor as T
 
-def test_density():
-    zeros = torch.zeros(10)
-    ones = torch.ones(30)
+def test_density(device):
+    zeros = torch.zeros(10).to(device)
+    ones = torch.ones(30).to(device)
     assert T.density(zeros) == 0.
     assert T.density(ones) == 1.
     assert T.density(torch.cat((zeros, ones))) == 0.75
 
-def test_sparsity():
-    zeros = torch.zeros(10)
-    ones = torch.ones(30)
+def test_sparsity(device):
+    zeros = torch.zeros(10).to(device)
+    ones = torch.ones(30).to(device)
     assert T.sparsity(zeros) == 1.
     assert T.sparsity(ones) == 0.
     assert T.sparsity(torch.cat((zeros, ones))) == 0.25
 
-def test_threshold():
-    a = torch.IntTensor(np.arange(0, 30))
+def test_threshold(device):
+    a = torch.IntTensor(np.arange(0, 30)).to(device)
     threshold2 = T.threshold(a, 0.2)
     threshold3 = T.threshold(a, 0.3)
     threshold5 = T.threshold(a, 0.5)
@@ -42,6 +42,11 @@ def test_threshold():
     assert threshold5.item() == 15
 
 if __name__ == '__main__':
-    test_density()
-    test_sparsity()
-    test_threshold()
+    test_density('cpu')
+    test_sparsity('cpu')
+    test_threshold('cpu')
+
+    if torch.cuda.is_available():
+        test_density('cpu')
+        test_sparsity('cpu')
+        test_threshold('cpu')

@@ -17,9 +17,9 @@ import torch
 import condensa
 from condensa import schemes
 
-def test_float16():
+def test_float16(device):
     scheme = schemes.Quantize(condensa.float16)
-    fc = torch.nn.Linear(100, 10).float()
+    fc = torch.nn.Linear(100, 10).float().to(device)
 
     scheme.pi(fc)
     assert fc.weight.dtype == torch.float16
@@ -27,4 +27,6 @@ def test_float16():
     assert fc.weight.dtype == torch.float32
 
 if __name__ == '__main__':
-    test_float16()
+    test_float16('cpu')
+    if torch.cuda.is_available():
+        test_float16('cpu')
