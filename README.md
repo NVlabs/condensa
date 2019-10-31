@@ -2,10 +2,8 @@
 
 Condensa is a framework for _programmable model compression_ in Python.
 It comes with a set of built-in compression operators which may be used to
-compose complex compression schemes targeting specific combinations of DNN,
+compose complex compression schemes targeting specific combinations of DNN architecture,
 hardware platform, and optimization objective.
-Common programming abstractions such as conditionals, iteration, and
-recursion are all natively supported.
 To recover any accuracy lost during compression, Condensa uses a constrained
 optimization formulation of model compression and employs an Augmented Lagrangian-based
 algorithm as the optimizer.
@@ -37,6 +35,14 @@ Condensa requires:
 
 ## Installation
 
+The most straightforward way of installing Condensa is via `pip`:
+
+```bash
+pip install condensa
+```
+
+### Installation from Source
+
 Retrieve the latest source code from the Condensa repository:
 
 ```bash
@@ -46,8 +52,10 @@ git clone https://github.com/NVlabs/condensa.git
 Navigate to the source code directory and run the following:
 
 ```bash
-pip install -r requirements.txt
+pip install -e .
 ```
+
+### Test out the Installation
 
 To check the installation, run the unit test suite:
 
@@ -57,11 +65,12 @@ bash run_all_tests.sh -v
 
 ## Getting Started
 
-The [MNIST LeNet5 Notebook](https://github.com/NVlabs/condensa/blob/master/notebooks/LeNet5.ipynb) contains a simple step-by-step walkthrough of compressing a pre-trained model using Condensa. Check out the `examples/` folder for additional, more complex examples of using Condensa.
+The [VGG-16 Notebook](https://github.com/NVlabs/condensa/blob/master/notebooks/VGG.ipynb) contains a simple step-by-step walkthrough of compressing a pre-trained model using Condensa.
+Check out the [`examples` folder](https://github.com/NVlabs/condensa/tree/master/examples/cifar) for additional, more complex examples of using Condensa (**note**: some examples require the `torchvision` package to be installed).
 
 ## Documentation
 
-Documentation is available [here](https://nvlabs.github.io/condensa/). We'll soon be releasing a paper with a detailed
+Documentation is available [here](https://nvlabs.github.io/condensa/). Please also check out the [Condensa paper]() for a detailed
 description of Condensa's motivation, features, and performance results.
 
 ## Contributing
@@ -77,8 +86,8 @@ If you use Condensa for research, please consider citing the following paper:
 
 ```
 @article{condensa2019,
-    title = {A Programming System for Model Compression},
-    author = {Joseph, Vinu and Muralidharan, Saurav and Garg, Animesh and Garland, Michael},
+    title = {A Programmable Approach to Model Compression},
+    author = {Joseph, Vinu and Muralidharan, Saurav and Garg, Animesh and Garland, Michael and Gopalakrishnan, Ganesh},
     journal = {CoRR},
     volume = {}
     year = {2019},
