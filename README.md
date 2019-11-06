@@ -65,7 +65,7 @@ bash run_all_tests.sh -v
 
 ## Getting Started
 
-The [VGG-16 Notebook](https://github.com/NVlabs/condensa/blob/master/notebooks/VGG.ipynb) contains a simple step-by-step walkthrough of compressing a pre-trained model using Condensa.
+The [AlexNet Notebook](https://github.com/NVlabs/condensa/blob/master/notebooks/AlexNet.ipynb) contains a simple step-by-step walkthrough of compressing a pre-trained model using Condensa.
 Check out the [`examples` folder](https://github.com/NVlabs/condensa/tree/master/examples/cifar) for additional, more complex examples of using Condensa (**note**: some examples require the `torchvision` package to be installed).
 
 ## Documentation
