@@ -75,6 +75,16 @@ def magnitude_threshold(module, density):
     return T.threshold(params, density)
 
 def empty_stat_fn(model, criterion, dataloader):
+    """
+    Empty model statistics function: returns loss.
+
+    :param model: PyTorch model
+    :type model: `torch.nn.Module`
+    :param loss_fn: Loss function
+    :param dataloader: Data loader to use
+    :return: Tuple of loss, dictionary of statistics
+    :rtype: `Tuple(float, dict)`
+    """
     return (loss(model, criterion, dataloader), {})
 
 def accuracy(output, target, topk=(1, )):
