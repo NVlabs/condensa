@@ -6,6 +6,11 @@ __pycache__/
 *.egg-info/
 *.egg
 .eggs/
+dist/
+sdist/
+
+# Jupyter Notebook
+.ipynb_checkpoints
 
 # Condensa-specific
 compressed/
