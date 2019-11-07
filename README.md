@@ -70,7 +70,7 @@ Check out the [`examples` folder](https://github.com/NVlabs/condensa/tree/master
 
 ## Documentation
 
-Documentation is available [here](https://nvlabs.github.io/condensa/). Please also check out the [Condensa paper]() for a detailed
+Documentation is available [here](https://nvlabs.github.io/condensa/). Please also check out the [Condensa paper](https://arxiv.org/abs/1911.02497) for a detailed
 description of Condensa's motivation, features, and performance results.
 
 ## Contributing
@@ -89,9 +89,9 @@ If you use Condensa for research, please consider citing the following paper:
     title = {A Programmable Approach to Model Compression},
     author = {Joseph, Vinu and Muralidharan, Saurav and Garg, Animesh and Garland, Michael and Gopalakrishnan, Ganesh},
     journal = {CoRR},
-    volume = {}
+    volume = {1911.02497},
     year = {2019},
-    url = {}
+    url = {https://arxiv.org/abs/1911.02497}
 }
 ```
 
