@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Utilities &mdash; Condensa 0.5-beta documentation</title>
+  <title>Utilities &mdash; Condensa 0.5.0-beta documentation</title>
   
 
   
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                0.5
+                0.5.0
               </div>
             
           
@@ -217,6 +217,27 @@
 </dd></dl>
 
 <dl class="function">
+<dt id="condensa.util.cnn_statistics">
+<code class="sig-prename descclassname">condensa.util.</code><code class="sig-name descname">cnn_statistics</code><span class="sig-paren">(</span><em class="sig-param">model</em>, <em class="sig-param">criterion</em>, <em class="sig-param">dataloader</em><span class="sig-paren">)</span><a class="headerlink" href="#condensa.util.cnn_statistics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes accuracy of given CNN model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> (<cite>torch.nn.Module</cite>) – PyTorch model</p></li>
+<li><p><strong>criterion</strong> – Loss function</p></li>
+<li><p><strong>dataloader</strong> – Data loader to use</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Top-1 and Top-5 accuracies</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Tuple(top1, top5)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
 <dt id="condensa.util.compressed_model_stats">
 <code class="sig-prename descclassname">condensa.util.</code><code class="sig-name descname">compressed_model_stats</code><span class="sig-paren">(</span><em class="sig-param">w</em>, <em class="sig-param">wc</em><span class="sig-paren">)</span><a class="headerlink" href="#condensa.util.compressed_model_stats" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrieve various statistics for compressed model.</p>
@@ -232,6 +253,27 @@
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><cite>dict</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="condensa.util.empty_stat_fn">
+<code class="sig-prename descclassname">condensa.util.</code><code class="sig-name descname">empty_stat_fn</code><span class="sig-paren">(</span><em class="sig-param">model</em>, <em class="sig-param">criterion</em>, <em class="sig-param">dataloader</em><span class="sig-paren">)</span><a class="headerlink" href="#condensa.util.empty_stat_fn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Empty model statistics function: returns loss.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> (<cite>torch.nn.Module</cite>) – PyTorch model</p></li>
+<li><p><strong>loss_fn</strong> – Loss function</p></li>
+<li><p><strong>dataloader</strong> – Data loader to use</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Tuple of loss, dictionary of statistics</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><cite>Tuple(float, dict)</cite></p>
 </dd>
 </dl>
 </dd></dl>
@@ -270,27 +312,6 @@
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><cite>float</cite></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="function">
-<dt id="condensa.util.loss_and_accuracy">
-<code class="sig-prename descclassname">condensa.util.</code><code class="sig-name descname">loss_and_accuracy</code><span class="sig-paren">(</span><em class="sig-param">model</em>, <em class="sig-param">criterion</em>, <em class="sig-param">dataloader</em><span class="sig-paren">)</span><a class="headerlink" href="#condensa.util.loss_and_accuracy" title="Permalink to this definition">¶</a></dt>
-<dd><p>Computes loss and accuracy of given model.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>model</strong> (<cite>torch.nn.Module</cite>) – PyTorch model</p></li>
-<li><p><strong>criterion</strong> – Loss function</p></li>
-<li><p><strong>dataloader</strong> – Data loader to use</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Loss and accuracy</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>Tuple(loss, accuracy)</p>
 </dd>
 </dl>
 </dd></dl>

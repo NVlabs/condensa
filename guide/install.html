@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Installation &mdash; Condensa 0.5-beta documentation</title>
+  <title>Installation &mdash; Condensa 0.5.0-beta documentation</title>
   
 
   
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                0.5
+                0.5.0
               </div>
             
           
@@ -90,6 +90,7 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-with-pip">Installation with pip</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#installation-from-source">Installation from Source</a></li>
 </ul>
 </li>
@@ -185,6 +186,13 @@
 <li><p>PyTorch 1.0 or newer</p></li>
 </ul>
 </div>
+<div class="section" id="installation-with-pip">
+<h2>Installation with pip<a class="headerlink" href="#installation-with-pip" title="Permalink to this headline">¶</a></h2>
+<p>The most straightforward way of installing Condensa is via <cite>pip</cite>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install condensa
+</pre></div>
+</div>
+</div>
 <div class="section" id="installation-from-source">
 <h2>Installation from Source<a class="headerlink" href="#installation-from-source" title="Permalink to this headline">¶</a></h2>
 <p>Retrieve the latest source code from the Condensa repository:</p>
@@ -192,7 +200,7 @@
 </pre></div>
 </div>
 <p>Navigate to the source code directory and run the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install -r requirements.txt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install -e .
 </pre></div>
 </div>
 <p>To check the installation, run the unit test suite:</p>

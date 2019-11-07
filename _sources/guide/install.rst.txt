@@ -11,6 +11,15 @@ Condensa requires:
 * Python 3.5 or newer
 * PyTorch 1.0 or newer
 
+Installation with pip
+---------------------
+
+The most straightforward way of installing Condensa is via `pip`:
+
+.. code-block:: bash
+
+    pip install condensa
+
 Installation from Source
 ------------------------
 
@@ -24,7 +33,7 @@ Navigate to the source code directory and run the following:
 
 .. code-block:: bash
 
-   pip install -r requirements.txt
+   pip install -e .
 
 To check the installation, run the unit test suite:
 
