@@ -8,5 +8,5 @@ for a simple getting started guide.
 The `examples`_ folder contains additional, more complex examples of using Condensa.
 
 .. _notebooks: https://github.com/NVlabs/condensa/blob/master/notebooks
-.. _AlexNet Compression: https://github.com/NVlabs/condensa/blob/master/notebooks/alexnet.ipynb
+.. _AlexNet Compression: https://github.com/NVlabs/condensa/blob/master/notebooks/AlexNet.ipynb
 .. _examples: https://github.com/NVlabs/condensa/blob/master/examples

@@ -26,9 +26,9 @@ copyright = u'2019, NVIDIA Corporation'
 author = u'Saurav Muralidharan'
 
 # The short X.Y version
-version = '0.5'
+version = '0.5.0'
 # The full version, including alpha/beta/rc tags
-release = '0.5-beta'
+release = '0.5.0-beta'
 
 
 # -- General configuration ---------------------------------------------------
