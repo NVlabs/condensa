@@ -22,7 +22,7 @@ import condensa
 # -- Project information -----------------------------------------------------
 
 project = u'Condensa'
-copyright = u'2019, NVIDIA Corporation'
+copyright = u'2020, NVIDIA Corporation'
 author = u'Saurav Muralidharan'
 
 # The short X.Y version
