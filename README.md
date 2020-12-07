@@ -1,4 +1,4 @@
-# A Programming System for Model Compression
+# A Programming System for Neural Network Compression
 
 Condensa is a framework for _programmable model compression_ in Python.
 It comes with a set of built-in compression operators which may be used to
@@ -85,13 +85,15 @@ unit tests for the new features. Finally, make sure to sign off your commits usi
 If you use Condensa for research, please consider citing the following paper:
 
 ```
-@article{condensa2019,
-    title = {A Programmable Approach to Model Compression},
-    author = {Joseph, Vinu and Muralidharan, Saurav and Garg, Animesh and Garland, Michael and Gopalakrishnan, Ganesh},
-    journal = {CoRR},
-    volume = {1911.02497},
-    year = {2019},
-    url = {https://arxiv.org/abs/1911.02497}
+@article{condensa2020,
+  title={A Programmable Approach to Neural Network Compression}, 
+  author={V. {Joseph} and G. L. {Gopalakrishnan} and S. {Muralidharan} and M. {Garland} and A. {Garg}},
+  journal={IEEE Micro}, 
+  year={2020},
+  volume={40},
+  number={5},
+  pages={17-25},
+  doi={10.1109/MM.2020.3012391}
 }
 ```
 
