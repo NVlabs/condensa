@@ -1,4 +1,4 @@
-# Copyright 2020 NVIDIA Corporation
+# Copyright 2022 NVIDIA Corporation
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,17 +19,17 @@ import condensa.schemes as schemes
 import condensa.tensor as T
 import condensa.functional as F
 
-def test_prune(device):
+def test_prune(device='cuda'):
     fc = torch.nn.Linear(100, 10, bias=True).to(device)
-    scheme = schemes.Prune(0.5)
-    threshold = scheme.threshold(fc)
-    scheme.pi(fc)
+    scheme = schemes.LayerPruner()
+    threshold = T.threshold(scheme.aggregate(fc), 0.5)
+    scheme.pi(fc, threshold)
 
     t = fc.weight.data.abs().view(-1)
     nzs = torch.index_select(t, 0, t.nonzero().view(-1))
     assert (nzs >= threshold).all()
 
-def test_filter_prune(device):
+def test_filter_prune(device='cuda'):
     conv = torch.nn.Conv2d(3,
                            64,
                            kernel_size=11,
@@ -38,9 +38,9 @@ def test_filter_prune(device):
                            bias=True).to(device)
 
     criteria = F.l2norm
-    scheme = schemes.FilterPrune(0.5, criteria=criteria, prune_bias=True)
-    threshold = scheme.threshold(conv)
-    scheme.pi(conv)
+    scheme = schemes.LayerFilterPruner(criteria=criteria, prune_bias=True)
+    threshold = T.threshold(scheme.aggregate(conv), 0.5)
+    scheme.pi(conv, threshold)
 
     # Check against threshold
     agg = T.aggregate_filters(conv.weight.data, criteria).view(-1)
@@ -52,13 +52,13 @@ def test_filter_prune(device):
     z = torch.index_select(conv.bias.data, 0, zero_indices)
     assert (z == 0.).all()
 
-def test_neuron_prune(device):
+def test_neuron_prune(device='cuda'):
     fc = torch.nn.Linear(100, 10, bias=True).to(device)
 
     criteria = F.l2norm
-    scheme = schemes.NeuronPrune(0.5, criteria=criteria, prune_bias=True)
-    threshold = scheme.threshold(fc)
-    scheme.pi(fc)
+    scheme = schemes.LayerNeuronPruner(criteria=criteria, prune_bias=True)
+    threshold = T.threshold(scheme.aggregate(fc), 0.5)
+    scheme.pi(fc, threshold)
 
     # Check against threshold
     agg = T.aggregate_neurons(fc.weight.data, criteria).view(-1)
@@ -70,13 +70,13 @@ def test_neuron_prune(device):
     z = torch.index_select(fc.bias.data, 0, zero_indices)
     assert (z == 0.).all()
 
-def test_block_prune(device, blocksize=(10,10)):
+def test_block_prune(device='cuda', blocksize=(10,10)):
     fc = torch.nn.Linear(100, 100, bias=False).to(device)
 
     criteria = F.l2norm
-    scheme = schemes.BlockPrune(0.5, criteria=criteria, block_size=blocksize)
-    threshold = scheme.threshold(fc)
-    scheme.pi(fc)
+    scheme = schemes.LayerBlockPruner(criteria=criteria, block_size=blocksize)
+    threshold = T.threshold(scheme.aggregate(fc), 0.5)
+    scheme.pi(fc, threshold)
 
     # Check against threshold
     agg = T.aggregate(fc.weight.data, blocksize, criteria).view(-1)

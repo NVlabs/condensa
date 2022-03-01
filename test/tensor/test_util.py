@@ -1,4 +1,4 @@
-# Copyright 2020 NVIDIA Corporation
+# Copyright 2022 NVIDIA Corporation
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,27 +17,27 @@ import torch
 
 import condensa.tensor as T
 
-def test_density(device):
+def test_density(device='cuda'):
     zeros = torch.zeros(10).to(device)
     ones = torch.ones(30).to(device)
     assert T.density(zeros) == 0.
     assert T.density(ones) == 1.
     assert T.density(torch.cat((zeros, ones))) == 0.75
 
-def test_sparsity(device):
+def test_sparsity(device='cuda'):
     zeros = torch.zeros(10).to(device)
     ones = torch.ones(30).to(device)
     assert T.sparsity(zeros) == 1.
     assert T.sparsity(ones) == 0.
     assert T.sparsity(torch.cat((zeros, ones))) == 0.25
 
-def test_threshold(device):
+def test_threshold(device='cuda'):
     a = torch.IntTensor(np.arange(0, 30)).to(device)
-    threshold2 = T.threshold(a, 0.2)
-    threshold3 = T.threshold(a, 0.3)
+    threshold2 = T.threshold(a, 0.8)
+    threshold3 = T.threshold(a, 0.7)
     threshold5 = T.threshold(a, 0.5)
 
-    assert threshold2.item() == 24
+    assert threshold2.item() == 25
     assert threshold3.item() == 21
     assert threshold5.item() == 15
 
@@ -47,6 +47,6 @@ if __name__ == '__main__':
     test_threshold('cpu')
 
     if torch.cuda.is_available():
-        test_density('cpu')
-        test_sparsity('cpu')
-        test_threshold('cpu')
+        test_density('cuda:0')
+        test_sparsity('cuda:0')
+        test_threshold('cuda:0')

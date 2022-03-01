@@ -12,14 +12,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-name = "condensa"
+from . import cfg
 
-from .version import __version__
-
-from .pi          import prune, blockprune, neuron_prune, filter_prune
-from .util        import *
-from .cfg         import save_masks
-from .mask        import add_mask_to_module
-
-from . import schemes
-from . import contrib
+def add_mask_to_module(module, parameter, mask):
+    if cfg.__CONDENSA_SAVE_MASKS__:
+        maskattr = f'__condensa_mask_{parameter}'
+        if hasattr(module, maskattr):
+            modmask = getattr(module, maskattr)
+            if not isinstance(modmask, list):
+                modmask = [modmask]
+            modmask.append(mask)
+            setattr(module, maskattr, modmask)
+        else:
+            setattr(module, maskattr, mask)

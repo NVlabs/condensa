@@ -1,4 +1,4 @@
-# Copyright 2020 NVIDIA Corporation
+# Copyright 2022 NVIDIA Corporation
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,6 +13,21 @@
 # limitations under the License.
 
 import torch
+
+def scaled_l2norm(tensor, dim, keepdim):
+    """
+    Computes the scaled l2-norm of elements in input tensor.
+
+    :param tensor: PyTorch tensor.
+    :type tensor: `torch.nn.Module`
+    :param dim: Reduction dimension.
+    :type dim: `int`
+    :param keepdim: Whether the output has `dim` retained.
+    :type keepdim: `bool`
+    :return: l2-norm of input tensor.
+    """
+    assert isinstance(dim, int)
+    return torch.norm(tensor, 2, dim, keepdim) / float(tensor.shape[dim])
 
 def l2norm(tensor, dim, keepdim):
     """

@@ -1,4 +1,4 @@
-# Copyright 2020 NVIDIA Corporation
+# Copyright 2022 NVIDIA Corporation
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@ from setuptools import setup
 from setuptools import find_packages
 
 cwd = os.path.dirname(os.path.abspath(__file__))
-version = '0.5.0-beta'
+version = 'lite-0.1'
 
 def build_deps():
   version_path = os.path.join(cwd, 'condensa', 'version.py')
@@ -30,8 +30,7 @@ with open(os.path.join(cwd, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 install_requires = ['numpy',
-                    'torch>=1.0.0',
-                    'tqdm']
+                    'torch>=1.8.0']
 
 setup(name='condensa',
       version=version,
@@ -42,7 +41,7 @@ setup(name='condensa',
       author='Saurav Muralidharan',
       author_email='sauravm@nvidia.com',
       license='Apache License 2.0',
-      keywords=['compression', 'quantization', 'pruning'],
+      keywords=['compression', 'pruning'],
       install_requires=install_requires,
       packages=find_packages(),
       classifiers=[

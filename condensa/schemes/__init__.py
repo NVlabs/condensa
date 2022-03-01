@@ -12,14 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-name = "condensa"
+from .types    import NetworkScheme, LayerScheme
 
-from .version import __version__
+from .compose  import NetworkPruner, SchemeComposer
 
-from .pi          import prune, blockprune, neuron_prune, filter_prune
-from .util        import *
-from .cfg         import save_masks
-from .mask        import add_mask_to_module
+from .prune    import LayerPruner
+from .block    import LayerBlockPruner
+from .filter   import LayerFilterPruner
+from .neuron   import LayerNeuronPruner
 
-from . import schemes
-from . import contrib
+from .json     import parse, get_layer_scheme, load_json_scheme

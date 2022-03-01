@@ -12,14 +12,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-name = "condensa"
+import torch
 
-from .version import __version__
+import condensa
+import condensa.tensor as T
+import condensa.functional as F
+from condensa import cfg
 
-from .pi          import prune, blockprune, neuron_prune, filter_prune
-from .util        import *
-from .cfg         import save_masks
-from .mask        import add_mask_to_module
+class NetworkScheme(object):
+    """Network-wide scheme."""
+    pass
 
-from . import schemes
-from . import contrib
+class LayerScheme(object):
+    """Layer-wise scheme."""
+    @property
+    def fixed_sparsity(self):
+        return False

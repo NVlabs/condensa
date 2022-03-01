@@ -1,52 +1,24 @@
 # A Programming System for Model Compression
 
-Condensa is a framework for _programmable model compression_ in Python.
-It comes with a set of built-in compression operators which may be used to
-compose complex compression schemes targeting specific combinations of DNN architecture,
-hardware platform, and optimization objective.
-To recover any accuracy lost during compression, Condensa uses a constrained
-optimization formulation of model compression and employs an Augmented Lagrangian-based
-algorithm as the optimizer.
+This repository contains **Condensa Lite**, a stripped-down version of Condensa that only supports pruning and learning-rate rewinding.
 
-**Status**: Condensa is under active development, and bug reports, pull requests, and other feedback are all highly appreciated. See the contributions section below for more details on how to contribute.
-
-## Supported Operators and Schemes
-
-Condensa provides the following set of pre-built compression schemes:
-
-* [Unstructured Pruning](https://nvlabs.github.io/condensa/modules/schemes.html#unstructured-pruning)
-* [Filter and Neuron Pruning](https://nvlabs.github.io/condensa/modules/schemes.html#neuron-pruning)
-* [Block Pruning](https://nvlabs.github.io/condensa/modules/schemes.html#block-pruning)
-* [Quantization](https://nvlabs.github.io/condensa/modules/schemes.html#quantization)
-* [Scheme Composition](https://nvlabs.github.io/condensa/modules/schemes.html#composition)
-
-The schemes above are built using one or more [compression operators](https://nvlabs.github.io/condensa/modules/pi.html), which may be combined in various ways to define your own custom schemes.
-
-Please refer to the [documentation](https://nvlabs.github.io/condensa/index.html) for a detailed description of available operators and schemes.
+**Status**: Condensa Lite is under active development, and bug reports, pull requests, and other feedback are all highly appreciated. See the contributions section below for more details on how to contribute.
 
 ## Prerequisites
 
-Condensa requires:
+Condensa Lite requires:
 
-* A working Linux installation (we use Ubuntu 18.04)
-* NVIDIA drivers and CUDA 10+ for GPU support
-* Python 3.5 or newer
-* PyTorch 1.0 or newer
+* A working Linux installation (we use Ubuntu 20.04)
+* NVIDIA drivers and CUDA 11+ for GPU support
+* Python 3.6 or newer
+* PyTorch 1.8 or newer
 
 ## Installation
-
-The most straightforward way of installing Condensa is via `pip`:
-
-```bash
-pip install condensa
-```
-
-### Installation from Source
 
 Retrieve the latest source code from the Condensa repository:
 
 ```bash
-git clone https://github.com/NVlabs/condensa.git
+git clone --branch lite https://github.com/NVlabs/condensa.git
 ```
 
 Navigate to the source code directory and run the following:
@@ -63,16 +35,6 @@ To check the installation, run the unit test suite:
 bash run_all_tests.sh -v
 ```
 
-## Getting Started
-
-The [AlexNet Notebook](https://github.com/NVlabs/condensa/blob/master/notebooks/AlexNet.ipynb) contains a simple step-by-step walkthrough of compressing a pre-trained model using Condensa.
-Check out the [`examples` folder](https://github.com/NVlabs/condensa/tree/master/examples/cifar) for additional, more complex examples of using Condensa (**note**: some examples require the `torchvision` package to be installed).
-
-## Documentation
-
-Documentation is available [here](https://nvlabs.github.io/condensa/). Please also check out the [Condensa paper](https://arxiv.org/abs/1911.02497) for a detailed
-description of Condensa's motivation, features, and performance results.
-
 ## Contributing
 
 We appreciate all contributions, including bug fixes, new features and documentation, and additional tutorials. You can initiate
@@ -80,21 +42,24 @@ contributions via Github pull requests. When making code contributions, please f
 unit tests for the new features. Finally, make sure to sign off your commits using the `-s` flag or adding 
 `Signed-off-By: Name<Email>` in the commit message.
 
-## Citing Condensa
+## Citing Condensa Lite
 
-If you use Condensa for research, please consider citing the following paper:
+If you use Condensa Lite for research, please consider citing the following paper:
 
 ```
-@article{condensa2019,
-    title = {A Programmable Approach to Model Compression},
-    author = {Joseph, Vinu and Muralidharan, Saurav and Garg, Animesh and Garland, Michael and Gopalakrishnan, Ganesh},
-    journal = {CoRR},
-    volume = {1911.02497},
-    year = {2019},
-    url = {https://arxiv.org/abs/1911.02497}
+@article{condensa:2020,
+    title={A Programmable Approach to Neural Network Compression},
+    author={Joseph, Vinu and Gopalakrishnan, Ganesh L
+            and Muralidharan, Saurav and Garland, Michael and Garg, Animesh},
+    journal={IEEE Micro},
+    volume={40},
+    number={5},
+    pages={17--25},
+    year={2020},
+    publisher={IEEE}
 }
 ```
 
 ## Disclaimer
 
-Condensa is a research prototype and not an official NVIDIA product. Many features are still experimental and yet to be properly documented.
+Condensa Lite is a research prototype and not an official NVIDIA product. Many features are still experimental and yet to be properly documented.

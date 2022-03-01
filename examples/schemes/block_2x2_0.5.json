@@ -1,0 +1,10 @@
+{
+    "sparsity": 0.5,
+    "*": [
+        {
+            "type": "block",
+	    "blocksize": [2,2]
+        }
+    ]
+}
+

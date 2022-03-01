@@ -12,14 +12,4 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-name = "condensa"
-
-from .version import __version__
-
-from .pi          import prune, blockprune, neuron_prune, filter_prune
-from .util        import *
-from .cfg         import save_masks
-from .mask        import add_mask_to_module
-
-from . import schemes
-from . import contrib
+from . import rewind

@@ -1,4 +1,4 @@
-# Copyright 2020 NVIDIA Corporation
+# Copyright 2022 NVIDIA Corporation
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,6 +14,7 @@
 
 import numpy as np
 import torch
+import torch.nn.functional as F
 
 def density(tensor):
     """
@@ -38,26 +39,26 @@ def sparsity(tensor):
     """
     return 1. - density(tensor)
 
-def threshold(tensor, density):
+def threshold(tensor, sparsity):
     """
     Computes a magnitude-based threshold for given tensor.
 
     :param tensor: PyTorch tensor
     :type tensor: `torch.Tensor`
-    :param density: Desired ratio of nonzeros to total elements
-    :type density: `float`
+    :param sparsity: Desired ratio of zeros to total elements
+    :type sparsity: `float`
     :return: Magnitude threshold
     :rtype: `float`
     """
-    tf = tensor.abs().view(-1)
-    numel = int(density * tf.numel())
+    density = 1. - sparsity
+    numel = int(density * tensor.numel())
     if numel == 0:
-        raise RuntimeError('Provided density value causes model to be zero.')
+        raise RuntimeError('Provided sparsity value causes model to be zero.')
 
-    topk, _ = torch.topk(tf.abs(), numel, sorted=True)
+    topk, _ = torch.topk(tensor.abs().view(-1), numel, sorted=True)
     return topk.data[-1]
 
-def aggregate(tensor, blocksize, criteria):
+def aggregate(tensor, blocksize, criteria, padding=False):
     """
     Aggregates tensor dimensions according to criteria.
 
@@ -67,6 +68,8 @@ def aggregate(tensor, blocksize, criteria):
     :type blocksize: `Tuple(int)`
     :param criteria: Aggregation criteria
     :type criteria: `condensa.functional`
+    :type padding: Whether to pad with zeros
+    :param padding: Boolean
     :return: Aggregated tensor
     :rtype: `torch.Tensor`
     """
@@ -74,14 +77,27 @@ def aggregate(tensor, blocksize, criteria):
         raise RuntimeError('Tensor and block dimensions do not match')
     ndim = tensor.dim()
 
-    blocksize_flat = np.prod(np.array(blocksize))
     shape = np.array(tensor.shape)
-    repeats = (shape / blocksize).astype(int)
     divcheck = (shape % blocksize).astype(int)
 
     if not np.all(divcheck == 0):
-        raise TypeError('Block size must be divisible by tensor size')
+        if padding:
+            pad = (((((shape - 1) / blocksize).astype(int) + 1) * blocksize)
+                  - shape)
+            pad_exp = np.zeros(pad.shape[0] * 2).astype(int)
+            pad_exp[1::2] = np.flip(pad, 0)
+            # Pad end of each axis with zeros
+            tensor = F.pad(input=tensor,
+                           pad=tuple(pad_exp),
+                           mode='constant',
+                           value=0)
+            shape = np.array(tensor.shape)
+        else:
+            raise TypeError('Block size not divisible by tensor size. '
+                            'Consider setting padding to True.')
 
+    blocksize_flat = np.prod(np.array(blocksize))
+    repeats = (shape / blocksize).astype(int)
     tmpshape = np.column_stack([repeats, blocksize]).ravel()
     order = np.arange(len(tmpshape))
     order = np.concatenate([order[::2], order[1::2]])
@@ -116,7 +132,7 @@ def aggregate_filters(tensor, criteria):
     """
     return aggregate(tensor, (1, *tensor.shape[1:]), criteria)
 
-def simple_mask(tensor, threshold, align=None):
+def simple_mask(tensor, threshold):
     """
     Computes a simple binary mask for given magnitude threshold.
 
@@ -127,25 +143,39 @@ def simple_mask(tensor, threshold, align=None):
     :return: Mask
     :rtype: `torch.Tensor`
     """
-    assert tensor.dim() == 1
-    if align is None:
-        return torch.ge(tensor.abs(), threshold)
-    else:
-        size = tensor.size(0)
-        if size < align:
-            raise RuntimeError('Tensor too small for given alignment')
-        t = tensor.abs()
-        nnz = torch.ge(t, threshold).nonzero().size(0)
-        nnz = int(nnz / align) * align
-        _, indices = torch.topk(t, nnz)
-        ones = torch.ones(nnz,
-                          dtype=tensor.dtype,
-                          layout=tensor.layout,
-                          device=tensor.device)
-        mask = torch.zeros_like(tensor).scatter_(0, indices, ones)
-        return mask
+    return torch.ge(tensor.abs(), threshold)
 
-def block_mask(tensor, threshold, blocksize, criteria, align=None):
+def get_mask(tensor):
+    """
+    Returns the non-zero mask for tensor.
+
+    :param tensor: PyTorch tensor
+    :type tensor: `torch.Tensor`
+    :return: Mask
+    :rtype: `torch.Tensor`
+    """
+    return torch.gt(tensor.abs(), 0.)
+
+def simple_aligned_mask(tensor, threshold, align):
+    """
+    Computes a simple aligned binary mask for given magnitude threshold.
+
+    :param tensor: PyTorch tensor
+    :type tensor: `torch.Tensor`
+    :param threshold: magnitude threshold for pruning
+    :type threshold: `float`
+    :param align: alignment
+    :type align: `float`
+    :return: Mask
+    :rtype: `torch.Tensor`
+    """
+    raise NotImplementedError('simple_aligned_mask')
+
+def block_mask(tensor,
+               threshold,
+               blocksize,
+               criteria,
+               padding=False):
     """
     Computes an n-D binary mask for given magnitude threshold.
 
@@ -157,6 +187,8 @@ def block_mask(tensor, threshold, blocksize, criteria, align=None):
     :type blocksize: `Tuple`
     :param criteria: aggregation function for thresholding (default: max)
     :type criteria: `condensa.functional`
+    :type padding: Whether to pad with zeros
+    :param padding: Boolean
     :return: Mask
     :rtype: `torch.Tensor`
     """
@@ -166,14 +198,28 @@ def block_mask(tensor, threshold, blocksize, criteria, align=None):
         raise RuntimeError('Tensor and block dimensions do not match')
     ndim = tensor.dim()
 
-    blocksize_flat = np.prod(np.array(blocksize))
     shape = np.array(tensor.shape)
-    repeats = (shape / blocksize).astype(int)
     divcheck = (shape % blocksize).astype(int)
 
+    pad = None
     if not np.all(divcheck == 0):
-        raise TypeError('Block size must be divisible by tensor size')
+        if padding:
+            pad = (((((shape - 1) / blocksize).astype(int) + 1) * blocksize)
+                  - shape)
+            pad_exp = np.zeros(pad.shape[0] * 2).astype(int)
+            pad_exp[1::2] = np.flip(pad, 0)
+            # Pad end of each axis with zeros
+            tensor = F.pad(input=tensor,
+                           pad=tuple(pad_exp),
+                           mode='constant',
+                           value=0)
+            shape = np.array(tensor.shape)
+        else:
+            raise TypeError('Block size not divisible by tensor size. '
+                            'Consider setting padding to True.')
 
+    blocksize_flat = np.prod(np.array(blocksize))
+    repeats = (shape / blocksize).astype(int)
     tmpshape = np.column_stack([repeats, blocksize]).ravel()
     order = np.arange(len(tmpshape))
     order = np.concatenate([order[::2], order[1::2]])
@@ -181,7 +227,7 @@ def block_mask(tensor, threshold, blocksize, criteria, align=None):
     blocks = blocks.permute(tuple(order)).reshape(-1, *blocksize)
     agg = criteria(blocks.reshape(-1, blocksize_flat), dim=1, keepdim=True)
 
-    mask = simple_mask(agg.view(-1), threshold, align)
+    mask = simple_mask(agg.view(-1), threshold)
     mask = mask.view(agg.shape).expand(-1,
                                        blocksize_flat).reshape(blocks.shape)
 
@@ -189,8 +235,16 @@ def block_mask(tensor, threshold, blocksize, criteria, align=None):
     repeats = (shape / newshape).astype(int)
     tmpshape = np.concatenate([repeats, newshape])
     order = np.arange(len(tmpshape)).reshape(2, -1).ravel(order='F')
-    return mask.reshape(tuple(tmpshape)).permute(tuple(order)).reshape(
-        tuple(shape))
+    mask = mask.reshape(tuple(tmpshape)).permute(tuple(order)).reshape(
+                        tuple(shape))
+    if pad is not None:
+        # Snip padded dimensions back to original size
+        viewdim = []
+        for i in range(len(pad)):
+            col = (-pad[i] if pad[i] != 0 else None)
+            viewdim.append(slice(0, col))
+        return mask[viewdim]
+    return mask
 
 def apply_mask(tensor, mask):
     """
