@@ -150,7 +150,6 @@ def main():
     cratio = float(npo) / float(npc)
     cratio_full = float(npo_full) / float(npc_full)
     print(f'compression ratio (effective,full): ({cratio},{cratio_full})')
-    quit()
 
     torch.save(model.state_dict(), args.out)
     logger.info('Compressed model saved to disk')
