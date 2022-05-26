@@ -63,11 +63,24 @@ class _PatchedOptimizer(object):
 
 
 def patch_optimizer(optimizer, model):
+    """
+    Patches optimizer to apply sparsity masks.
+    
+    :param optimizer: Optimizer 
+    :param model: PyTorch model
+    :type model: `torch.nn.Module`
+    """
     po = _PatchedOptimizer(optimizer, model)
     po.patch()
 
 
 def clear_masks(model):
+    """
+    Clears all masks within given model.
+    
+    :param model: PyTorch model 
+    :type model: `torch.nn.Module`
+    """
     for m in model.modules():
         if hasattr(m, 'condense'):
             for pname in m.condense:

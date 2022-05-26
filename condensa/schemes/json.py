@@ -55,6 +55,14 @@ def load_json_scheme(json_file):
     return cspec
     
 def parse(json_file, modules):
+    """
+    Parses compression scheme(s) from a given JSON file.
+    
+    :param json_file: JSON file
+    :type json_file: str
+    :param modules: List of modules to apply scheme(s) to
+    :type modules: `list(torch.nn.Module)`
+    """
     cspec = load_json_scheme(json_file)
 
     # Read global sparsity value (if any)

@@ -1,6 +1,6 @@
 # A Programming System for Model Compression
 
-This repository contains **Condensa Lite**, a stripped-down version of Condensa that only supports pruning and learning-rate rewinding.
+This repository contains **Condensa Lite**, a stripped-down version of Condensa that supports pruning and learning-rate rewinding.
 
 **Status**: Condensa Lite is under active development, and bug reports, pull requests, and other feedback are all highly appreciated. See the contributions section below for more details on how to contribute.
 
