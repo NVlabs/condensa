@@ -1,5 +1,7 @@
 # A Programming System for Neural Network Compression
 
+**Note:** the original version of Condensa (contained in this branch) is no longer actively maintained. Please check out the [lite branch](https://github.com/NVlabs/condensa/tree/lite) for the most up-to-date version.
+
 Condensa is a framework for _programmable model compression_ in Python.
 It comes with a set of built-in compression operators which may be used to
 compose complex compression schemes targeting specific combinations of DNN architecture,
