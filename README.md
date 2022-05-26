@@ -35,6 +35,11 @@ To check the installation, run the unit test suite:
 bash run_all_tests.sh -v
 ```
 
+## Documentation
+
+Documentation for Condensa Lite is available [here](https://nvlabs.github.io/condensa/lite). Please also check out the original [Condensa paper](https://arxiv.org/abs/1911.02497) for a detailed
+description of Condensa's motivation, features, and performance results.
+
 ## Contributing
 
 We appreciate all contributions, including bug fixes, new features and documentation, and additional tutorials. You can initiate
