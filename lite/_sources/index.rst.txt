@@ -33,6 +33,7 @@ Condensa Lite is under active development, and bug reports, pull requests, and o
    modules/tensor
    modules/functional
    modules/util
+   modules/lrr
 
 Indices and Tables
 ------------------
